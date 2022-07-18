@@ -1,0 +1,12 @@
+#docker-compose.yml
+version: "3"
+
+services:
+  client:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+    command: sh -c "npm install && npm start"
