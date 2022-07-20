@@ -1,9 +1,14 @@
 import './App.css';
-import TodoList from "./components/TodoList";
+import Sidebar from "./components/Sidebar";
+import RouterView from "./views/RouterView";
+import TodoListView from "./views/TodoListView";
 
 function App() {
   return (
-      <TodoList />
+      <div className="flex flex-row">
+        <Sidebar />
+        <RouterView/>
+      </div>
   );
 }
 

@@ -10,7 +10,8 @@ function TodoList() {
       new TodoItemObj("title3", "resp3", "descr3"),
   ]);
 
-  return <div>{ todoItems.map((item) => {
+  return <div className="w-3/4">
+    { todoItems.map((item) => {
         return <TodoItem item={item}/>;
   })}</div>
 }
