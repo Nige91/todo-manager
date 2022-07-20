@@ -20,7 +20,7 @@ function Sidebar(){
   ]
 
   return <div className="flex flex-col bg-blue-500">{items.map((item)=>{
-    return <SidebarItem item={item}/>
+    return <SidebarItem item={item} key={item.label}/>
   })}</div>
 }
 
