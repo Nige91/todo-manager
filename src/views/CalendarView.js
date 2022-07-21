@@ -1,7 +1,8 @@
-import Calendar from "../components/Calendar";
+import Calendar from "../components/calendar/Calendar";
 
 function CalendarView(){
   return <div>
+    <h1>Calendar</h1>
     <Calendar />
   </div>
 }
