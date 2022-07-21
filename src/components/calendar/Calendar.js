@@ -1,6 +1,8 @@
+import CalendarMonth from "./CalendarMonth";
+
 function Calendar(){
   return <div>
-
+    <CalendarMonth />
   </div>
 }
 
