@@ -1,8 +1,21 @@
+const zeroPad = (num, places) => String(num).padStart(places, '0');
+
+
 let CalendarUtils = {
   addDays: (date, days) => {
     let result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
+  },
+
+  formatDate: (date)=>{
+    return zeroPad(date.getDate(), 2) + '.'
+        + zeroPad(date.getMonth() + 1, 2) + '.' + date.getFullYear();
+  },
+
+  formatDateForInput: (date)=>{
+    return zeroPad(date.getFullYear(), 2) + '-'
+        + zeroPad(date.getMonth() +1, 2) + '-' + zeroPad(date.getDate(), 2);
   },
 
   /**
