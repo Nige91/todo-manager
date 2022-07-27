@@ -2,6 +2,7 @@ import {useRef} from "react";
 import { useDispatch } from 'react-redux';
 import {add} from "../store/todoListSlice";
 import TodoItemObj from "../model/TodoItemObj";
+import CalendarUtils from "../utils/CalendarUtils";
 
 function TodoForm(props){
   const dispatch = useDispatch();
@@ -10,6 +11,12 @@ function TodoForm(props){
   const titleInput = useRef();
   const respInput = useRef();
   const descrInput = useRef();
+
+  const lockDateInput = props.date != null
+  let dateStringForInput = ""
+  if(lockDateInput){
+    dateStringForInput = CalendarUtils.formatDateForInput(props.date)
+  }
 
   const onClickHandler = () => {
     let item = new TodoItemObj(titleInput.current.value, dateInput.current.value,
@@ -22,7 +29,7 @@ function TodoForm(props){
     <form>
       <div>
         <label htmlFor="date">date</label>
-        <input type="date" ref={dateInput} name="date" id="date"/>
+        <input type="date" readOnly={lockDateInput} value={dateStringForInput} ref={dateInput} name="date" id="date"/>
       </div>
       <div>
         <label htmlFor="title">title</label>

@@ -21,7 +21,7 @@ function CalendarMonthDay(props){
     <p>{CalendarUtils.formatDate(props.date)}</p>
     <button className="p-2 rounded bg-blue-500" onClick={buttonCLickHandler}>+</button>
     <Modal onClickOutside={modalOutsideClickHandler} active={modalActive}>
-      <TodoForm afterSubmit={modalOutsideClickHandler} />
+      <TodoForm date={props.date} afterSubmit={modalOutsideClickHandler} />
     </Modal>
   </div>
 }
