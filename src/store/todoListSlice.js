@@ -5,9 +5,8 @@ export const todoListSlice = createSlice({
   name: 'todoList',
   initialState: [],
   reducers: {
-    add: (state) => {
-      const count = state.length;
-      state.push(new TodoItemObj("title"+count, "resp"+count, "descr"+count))
+    add: (state, action) => {
+      state.push(action.payload);
     }
   }
 });
