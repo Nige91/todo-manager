@@ -1,25 +1,44 @@
-function TodoForm(){
-  const onClickHandler = ()=>{
+import {useRef} from "react";
+import { useDispatch } from 'react-redux';
+import {add} from "../store/todoListSlice";
+import TodoItemObj from "../model/TodoItemObj";
 
+function TodoForm(props){
+  const dispatch = useDispatch();
+
+  const dateInput = useRef();
+  const titleInput = useRef();
+  const respInput = useRef();
+  const descrInput = useRef();
+
+  const onClickHandler = () => {
+    let item = new TodoItemObj(titleInput.current.value, dateInput.current.value,
+        respInput.current.value, descrInput.current.value);
+    dispatch(add(item))
+    props.afterSubmit();
   }
-
-
 
   return <div className="flex-col">
     <form>
       <div>
-        <label for="title">title</label>
-        <input type="text" name="title" id="title"/>
+        <label htmlFor="date">date</label>
+        <input type="date" ref={dateInput} name="date" id="date"/>
+      </div>
+      <div>
+        <label htmlFor="title">title</label>
+        <input type="text" ref={titleInput} name="title" id="title"/>
       </div>
       <div>
         <label htmlFor="responsible">responsible</label>
-        <input type="text" name="responsible" id="responsible"/>
+        <input type="text" ref={respInput} name="responsible" id="responsible"/>
       </div>
       <div>
         <label htmlFor="description">description</label>
-        <input type="text" name="description" id="description"/>
+        <input type="text" ref={descrInput} name="description" id="description"/>
       </div>
     </form>
-    <button onCLick={}>Submit</button>
+    <button onClick={onClickHandler}>Submit</button>
   </div>
 }
+
+export default TodoForm;
