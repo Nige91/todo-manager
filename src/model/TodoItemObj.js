@@ -13,13 +13,14 @@ class TodoItemObj {
   }
 
   static fromDto(dto){
-    return new TodoItemObj(dto.title, new Date(dto.dateAsTime), dto.responsible, dto.description)
+    let date = dto.dateAsTime === null ? null : new Date(dto.dateAsTime)
+    return new TodoItemObj(dto.title, date, dto.responsible, dto.description)
   }
 
   getDto = () => {
     return {
       title: this.title,
-      dateAsTime: this.date.getTime(),
+      dateAsTime: this.date === null ? null : this.date.getTime(),
       responsible: this.responsible,
       description: this.description
     }
