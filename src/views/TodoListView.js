@@ -1,9 +1,7 @@
 import TodoList from "../components/TodoList";
-import { useDispatch } from 'react-redux';
-import {add} from "../store/todoListSlice";
+import {useDispatch} from 'react-redux';
 import {useState} from "react";
 import Modal from "../components/ui/Modal";
-import TodoItemObj from "../model/TodoItemObj";
 import TodoForm from "../components/TodoForm";
 
 function TodoListView(){
@@ -16,8 +14,6 @@ function TodoListView(){
   const dispatch = useDispatch();
   const clickHandler = ()=>{
     setModalActive(true);
-    // let item = new TodoItemObj("ajadrgnköa", "kjadnf", "jagrn", "kjrangk")
-    // dispatch(add(item))
   };
 
   return <div>

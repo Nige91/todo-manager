@@ -1,6 +1,6 @@
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 
-
+//TODO refactor to class with static methods
 let CalendarUtils = {
   addDays: (date, days) => {
     let result = new Date(date);
@@ -57,6 +57,19 @@ let CalendarUtils = {
     }
     return result;
   },
+
+  compareDate: (date1, date2) => {
+    if(date1.getFullYear() !== date2.getFullYear()){
+      return false;
+    }
+    if(date1.getMonth() !== date2.getMonth()){
+      return false;
+    }
+    if(date1.getDate() !== date2.getDate()){
+      return false;
+    }
+    return true;
+  }
 }
 
 export default CalendarUtils;

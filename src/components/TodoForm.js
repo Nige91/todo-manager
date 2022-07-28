@@ -1,6 +1,6 @@
 import {useRef} from "react";
 import { useDispatch } from 'react-redux';
-import {add} from "../store/todoListSlice";
+import {add} from "../store/todoListDtoSlice";
 import TodoItemObj from "../model/TodoItemObj";
 import CalendarUtils from "../utils/CalendarUtils";
 
@@ -13,38 +13,41 @@ function TodoForm(props){
   const descrInput = useRef();
 
   const lockDateInput = props.date != null
-  let dateStringForInput = ""
+  let lockedDateInputProps = {}
   if(lockDateInput){
-    dateStringForInput = CalendarUtils.formatDateForInput(props.date)
+    lockedDateInputProps = {
+      value: CalendarUtils.formatDateForInput(props.date),
+      readOnly: "readOnly"
+    }
   }
 
   const onClickHandler = () => {
-    let item = new TodoItemObj(titleInput.current.value, dateInput.current.value,
+    let todoItem = new TodoItemObj(titleInput.current.value, dateInput.current.valueAsDate,
         respInput.current.value, descrInput.current.value);
-    dispatch(add(item))
+    dispatch(add(todoItem.getDto()))
     props.afterSubmit();
   }
 
-  return <div className="flex-col">
+  return <div className="flex-col p-2">
     <form>
-      <div>
-        <label htmlFor="date">date</label>
-        <input type="date" readOnly={lockDateInput} value={dateStringForInput} ref={dateInput} name="date" id="date"/>
+      <div className="m-2 p-2 rounded ">
+        <label htmlFor="date">date: </label>
+        <input type="date" {...lockedDateInputProps} ref={dateInput} name="date" id="date"/>
       </div>
-      <div>
-        <label htmlFor="title">title</label>
+      <div className="m-2 p-2  rounded">
+        <label htmlFor="title">title: </label>
         <input type="text" ref={titleInput} name="title" id="title"/>
       </div>
-      <div>
-        <label htmlFor="responsible">responsible</label>
+      <div className="m-2 p-2 rounded">
+        <label htmlFor="responsible">responsible: </label>
         <input type="text" ref={respInput} name="responsible" id="responsible"/>
       </div>
-      <div>
-        <label htmlFor="description">description</label>
+      <div className="m-2 p-2 rounded">
+        <label htmlFor="description">description: </label>
         <input type="text" ref={descrInput} name="description" id="description"/>
       </div>
     </form>
-    <button onClick={onClickHandler}>Submit</button>
+    <button className="p-2 rounded shadow bg-blue-200" onClick={onClickHandler}>Submit</button>
   </div>
 }
 
