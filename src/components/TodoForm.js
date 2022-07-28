@@ -25,6 +25,10 @@ function TodoForm(props){
     let todoItem = new TodoItemObj(titleInput.current.value, dateInput.current.valueAsDate,
         respInput.current.value, descrInput.current.value);
     dispatch(add(todoItem.getDto()))
+    dateInput.current.value = null
+    titleInput.current.value = ""
+    respInput.current.value = ""
+    descrInput.current.value = ""
     props.afterSubmit();
   }
 
