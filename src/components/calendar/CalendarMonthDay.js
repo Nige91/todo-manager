@@ -25,12 +25,12 @@ function CalendarMonthDay(props){
   }
 
   return <div className="p-2 m-2 shadow rounded bg-blue-200">
-    <p>{dayArr[(props.date.getDay() + 6)%7]}</p>
-    <p>{CalendarUtils.formatDate(props.date)}</p>
+    <p className="mb-2">{dayArr[(props.date.getDay() + 6)%7]}</p>
+    <p className="mb-2">{CalendarUtils.formatDate(props.date)}</p>
     {todoItems.map((item)=>{
       return <CalendarEntry item={item}/>
     })}
-    <button className="p-2 mt-2 rounded bg-blue-500" onClick={buttonCLickHandler}>+</button>
+    <button className="p-2 rounded bg-blue-500" onClick={buttonCLickHandler}>+</button>
     <Modal onClickOutside={modalOutsideClickHandler} active={modalActive}>
       <TodoForm date={props.date} afterSubmit={modalOutsideClickHandler} />
     </Modal>
