@@ -1,8 +1,8 @@
-import TodoList from "../components/TodoList";
+import TodoList from "../components/todo/TodoList";
 import {useDispatch} from 'react-redux';
 import {useState} from "react";
 import Modal from "../components/ui/Modal";
-import TodoForm from "../components/TodoForm";
+import TodoForm from "../components/todo/TodoForm";
 
 function TodoListView(){
   const [modalActive, setModalActive] = useState(false)

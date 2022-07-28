@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import TodoItemObj from "../model/TodoItemObj";
+import TodoItemObj from "../../model/TodoItemObj";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
