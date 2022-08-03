@@ -5,6 +5,10 @@ function TodoItemDetail(props){
     return;
   }
 
+  const setItemDone = () => {
+
+  }
+
   return <div className="flex flex-col rounded shadow m-2 bg-blue-400">
     <div className="flex flex-row">
       <div className="m-2 p-2 mr-0 mb-0 flex-grow rounded bg-blue-200">{item.title}</div>

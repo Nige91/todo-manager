@@ -16,9 +16,10 @@ function CalendarMonthDay(props){
   const [id, setId] = useState(-1)
 
   const todoItemsMap = useSelector((state)=>{
-    let todoList = state.todoListDto.map(dto => TodoItemObj.fromDto(dto));
+    let todoDictDto = state.todoDictDto;
     let result = {};
-    todoList.forEach((todoItem) => {
+    Object.keys(todoDictDto).map((key) => {
+      let todoItem = TodoItemObj.fromDto(todoDictDto[key]);
       if(CalendarUtils.compareDate(todoItem.date, props.date)){
         result[todoItem.id] = todoItem;
       }

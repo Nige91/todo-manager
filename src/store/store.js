@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import todoListDtoReducer from './todoListDtoSlice'
+import todoDictDtoReducer from './todoDictDtoSlice'
 
 export default configureStore({
   reducer: {
-    todoListDto: todoListDtoReducer,
+    todoDictDto: todoDictDtoReducer,
   },
 })
 

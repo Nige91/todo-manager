@@ -1,6 +1,6 @@
 import {useRef} from "react";
 import { useDispatch } from 'react-redux';
-import {add} from "../../store/todoListDtoSlice";
+import {addOrUpdate} from "../../store/todoDictDtoSlice";
 import TodoItemObj from "../../model/TodoItemObj";
 import CalendarUtils from "../../utils/CalendarUtils";
 
@@ -25,7 +25,7 @@ function TodoForm(props){
     const id = Math.floor(Math.random()*100000000) //TODO implement correct id
     let todoItem = new TodoItemObj(id, titleInput.current.value, dateInput.current.valueAsDate,
         respInput.current.value, descrInput.current.value);
-    dispatch(add(todoItem.getDto()))
+    dispatch(addOrUpdate(todoItem.getDto()))
     dateInput.current.value = null
     titleInput.current.value = ""
     respInput.current.value = ""

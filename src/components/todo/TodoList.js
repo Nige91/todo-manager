@@ -4,7 +4,7 @@ import TodoItemObj from "../../model/TodoItemObj";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
-  const todoList = useSelector(state=>state.todoListDto.map((dto)=>TodoItemObj.fromDto(dto)));
+  const todoList = useSelector(state=>Object.keys(state.todoDictDto).map((key)=>TodoItemObj.fromDto(state.todoDictDto[key])));
 
   return <div className="w-3/4">
     { todoList.map((item) => {
