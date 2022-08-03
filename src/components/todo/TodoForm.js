@@ -22,7 +22,8 @@ function TodoForm(props){
   }
 
   const onClickHandler = () => {
-    let todoItem = new TodoItemObj(titleInput.current.value, dateInput.current.valueAsDate,
+    const id = Math.floor(Math.random()*100000000) //TODO implement correct id
+    let todoItem = new TodoItemObj(id, titleInput.current.value, dateInput.current.valueAsDate,
         respInput.current.value, descrInput.current.value);
     dispatch(add(todoItem.getDto()))
     dateInput.current.value = null
