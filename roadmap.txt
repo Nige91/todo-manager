@@ -1,0 +1,35 @@
+integrate typescript
+
+add backend
+
+use the same components in list view and calendarview, one for small, one for large which swaps between detail and edit mode
+add toggle edit button to detailview. in edit mode, also show date.
+reduce todoitem to title, description and date. in editmode show all, in detail mode title and description and in small mode only title
+when adding todoitem in listview, make global, when in calendarview, set date.
+By default, show only globals in list and datetodos in calendar
+
+add toolbar
+remove sidebar
+add switch button between calendar and list view
+
+add authentication
+
+implement collapse in both views
+implement counter (done/total) in both views
+
+make responsive
+finalize jsx and css
+
+optional:
+
+add tags
+add filter by tags
+add search by tags
+
+add priorities
+
+add edit mode outside of detail view, that adds delete and setdone button at the sides of each todoitem, for quicker editing of multiple items.
+
+add more languages
+
+
