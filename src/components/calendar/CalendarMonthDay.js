@@ -57,7 +57,7 @@ function CalendarMonthDay(props){
       <TodoForm date={props.date} afterSubmit={formModalOutsideClickHandler} />
     </Modal>
     <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal" backdropDivId="todoBackdrop" >
-      <TodoItemDetail item={todoItemsMap[id]} />
+      <TodoItemDetail afterDelete={detailModalOutsideClickHandler} item={todoItemsMap[id]} />
     </Modal>
   </div>
 }

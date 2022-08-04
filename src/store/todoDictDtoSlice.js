@@ -7,9 +7,13 @@ export const todoDictDtoSlice = createSlice({
     addOrUpdate: (state, action) => {
       let todoItemDto = action.payload;
       state[todoItemDto.id] = todoItemDto;
+    },
+    remove: (state, action) => {
+      let todoItemDto = action.payload;
+      delete state[todoItemDto.id];
     }
   }
 });
 
-export const { addOrUpdate } = todoDictDtoSlice.actions
+export const { addOrUpdate, remove } = todoDictDtoSlice.actions
 export default todoDictDtoSlice.reducer

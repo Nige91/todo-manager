@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import {addOrUpdate} from "../../store/todoDictDtoSlice";
+import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
 
 function TodoItemDetail(props){
   let item = props.item;
@@ -14,6 +14,11 @@ function TodoItemDetail(props){
     dispatch(addOrUpdate(item.getDto()));
   }
 
+  const delItem = () => {
+    dispatch(remove(item.getDto()));
+    props.afterDelete();
+  }
+
   return <div className="flex flex-col rounded shadow m-2 bg-blue-400">
     <div className="flex flex-row">
       <div className="m-2 p-2 mr-0 mb-0 flex-grow rounded bg-blue-200">{item.title}</div>
@@ -21,7 +26,7 @@ function TodoItemDetail(props){
     </div>
     <div className="m-2 p-2 rounded bg-blue-200">{item.description}</div>
     <div className="flex flex-row">
-      <button className="m-2 p-2 rounded shadow bg-blue-200">Del</button>
+      <button className="m-2 p-2 rounded shadow bg-blue-200" onClick={delItem}>Del</button>
       <button className="m-2 p-2 rounded shadow bg-blue-200" onClick={setItemDone}>Done</button>
     </div>
   </div>
