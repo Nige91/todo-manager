@@ -1,6 +1,9 @@
 integrate typescript
 
 add backend
+implement way of syncing data between memory, discspace and server
+
+move todoMap up from calendarDay to calendar
 
 use the same components in list view and calendarview, one for small, one for large which swaps between detail and edit mode
 add toggle edit button to detailview. in edit mode, also show date.
@@ -16,6 +19,14 @@ add authentication
 
 implement collapse in both views
 implement counter (done/total) in both views
+
+add explanation on how to use the app
+
+add settings to disable explanation
+
+highlight current day in calendar
+
+try performance with 100k items and if issue, only map items by date once in calendar, instead of for every day
 
 make responsive
 finalize jsx and css
