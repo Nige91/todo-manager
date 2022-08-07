@@ -7,7 +7,7 @@ type Props = {
   onItemClick: any
 }
 
-function TodoList(props: Props) {
+const TodoList: React.FC<Props> = (props) => {
   return <div>
     {props.todoList.map((item)=><TodoItemSmall item={item} onClick={props.onItemClick}/>)}
   </div>
