@@ -7,7 +7,6 @@
 function TodoItemSmall(props) {
   return <p onClick={() => props.onClick(props.item.id)} className="p-2 mb-2 bg-blue-500 rounded">
     {props.item.title}
-    {props.item.done.toString()}
   </p>
 }
 
