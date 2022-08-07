@@ -1,8 +1,9 @@
 import React from "react";
 import TodoItemSmall from "./TodoItemSmall";
+import TodoItemObj from "../../model/TodoItemObj";
 
 type Props = {
-  todoList: [],
+  todoList: TodoItemObj[],
   onItemClick: (id: number) => void
 }
 

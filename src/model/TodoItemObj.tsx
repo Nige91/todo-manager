@@ -1,16 +1,24 @@
+type TodoItemDTO = {
+  id: number
+  title: string
+  dateAsTime: number | null;
+  description: string;
+  done: boolean;
+}
+
 class TodoItemObj {
-  id;
-  title;
-  date;
-  description;
-  done;
+  id: number
+  title: string
+  date: Date | null;
+  description: string;
+  done: boolean;
 
   static get WITHOUT_DATE_IDENTIFIER() {
     return "no-date"
   }
 
 
-  constructor(id, title, date, description, done=false) {
+  constructor(id: number, title: string, date: Date | null, description: string, done=false) {
     this.id = id;
     this.title = title;
     this.date = date
@@ -18,7 +26,7 @@ class TodoItemObj {
     this.done=done;
   }
 
-  static fromDto(dto){
+  static fromDto(dto: TodoItemDTO){
     let date = dto.dateAsTime === null ? null : new Date(dto.dateAsTime)
     return new TodoItemObj(dto.id, dto.title, date, dto.description, dto.done)
   }

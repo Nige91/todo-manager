@@ -1,8 +1,9 @@
 import React from "react";
+import TodoItemObj from "../../model/TodoItemObj";
 
 type Props = {
   onClick: (id: number) => void
-  item: any
+  item: TodoItemObj
 }
 
 const TodoItemSmall: React.FC<Props> = (props) => {
