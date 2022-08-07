@@ -1,10 +1,9 @@
 import React from "react";
-// @ts-ignore
 import TodoItemSmall from "./TodoItemSmall";
 
 type Props = {
   todoList: [],
-  onItemClick: any
+  onItemClick: (id: number) => void
 }
 
 const TodoList: React.FC<Props> = (props) => {
