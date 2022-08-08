@@ -3,7 +3,6 @@ integrate typescript
 add backend
 implement way of syncing data between memory, discspace and server
 
-move todoMap up from calendarDay to calendar
 
 extract input component
 
