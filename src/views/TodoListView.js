@@ -34,17 +34,26 @@ function TodoListView(){
     setId(id);
   };
 
+  const detailDateChangeHandler = () => {
+    setDetailModalActive(false);
+    setId(-1);
+  }
+
   return <div>
     <h1>Todo List</h1>
     <TodoList
         onItemClick={detailModalClickHandler}
-        todoList={todoList} />
+        todoList={todoList}/>
     <button onClick={formClickHandler}>Add</button>
-    <Modal active={formModalActive} onClickOutside={formOutsideClickHandler} modalDivId="formModal" backdropDivId="formBackdrop">
-      <TodoForm afterSubmit={formOutsideClickHandler} />
+    <Modal active={formModalActive} onClickOutside={formOutsideClickHandler} modalDivId="formModal"
+           backdropDivId="formBackdrop">
+      <TodoForm afterSubmit={formOutsideClickHandler}/>
     </Modal>
-    <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal" backdropDivId="todoBackdrop" >
-      <TodoItemDetail afterDelete={detailModalOutsideClickHandler} item={id !== -1 ? todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER][id] : null} />
+    <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal"
+           backdropDivId="todoBackdrop">
+      <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
+                      afterDateChange={detailDateChangeHandler}
+                      item={id !== -1 ? todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER][id] : null}/>
     </Modal>
   </div>
 }

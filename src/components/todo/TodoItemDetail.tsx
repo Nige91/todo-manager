@@ -4,10 +4,13 @@ import { useDispatch } from 'react-redux';
 // @ts-ignore
 import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
 import TodoItemObj from "../../model/TodoItemObj";
+// @ts-ignore
+import CalendarUtils from "../../utils/CalendarUtils";
 
 type Props = {
   item: TodoItemObj
   afterDelete: () => void
+  afterDateChange: () => void
 }
 
 
@@ -16,11 +19,13 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   let item = props.item;
   const titleInput: React.MutableRefObject<HTMLInputElement | undefined> = useRef();
   const descrInput: React.MutableRefObject<HTMLInputElement | undefined>  = useRef();
+  const dateInput: React.MutableRefObject<HTMLInputElement | undefined>  = useRef();
 
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false)
   const [titleInputValue, setTitleInputValue] = useState(item.title)
   const [descrInputValue, setDescrInputValue] = useState(item.description)
+  const [dateInputValue, setDateInputValue] = useState(item.date !== null ? CalendarUtils.formatDateForInput(item.date) : null)
 
   if(props.item === undefined){
     return;
@@ -53,6 +58,12 @@ const TodoItemDetail: React.FC<Props> = (props) => {
     if (typeof descrValue === "string") {
       item.description = descrValue;
     }
+    let dateValue = dateInput.current?.valueAsDate
+    let dateChanged = item.date?.getTime() !== dateValue;
+    item.date = dateValue === undefined ? null : dateValue
+    if(dateChanged){
+      props.afterDateChange() //TODO rename fucntion
+    }
     dispatch(addOrUpdate(item.getDto()));
   }
 
@@ -63,8 +74,12 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   // @ts-ignore
   const descrInputJSX = <input type="text" ref={descrInput} name="descr" id="descr" value={descrInputValue}
                                onChange={(evt) => setDescrInputValue(evt.target.value)}/>
+  // @ts-ignore
+  const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue}
+                              onChange={(evt) => setDateInputValue(evt.target.value)}/>
 
   return <div className="flex flex-col rounded shadow m-2 bg-blue-400">
+    {editMode && dateInputJSX}
     <div className="flex flex-row">
       <div className="m-2 p-2 mr-0 mb-0 flex-grow rounded bg-blue-200">{editMode ? titleInputJSX : item.title}</div>
       <button className="m-2 p-2 mb-0 rounded shadow bg-blue-200" onClick={toggleEdit}>
