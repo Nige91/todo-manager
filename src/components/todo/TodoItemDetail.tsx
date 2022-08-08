@@ -31,8 +31,8 @@ const TodoItemDetail: React.FC<Props> = (props) => {
     return;
   }
 
-  const setItemDone = () => {
-    item.done = true;
+  const toggleItemDone = () => {
+    item.done = !item.done;
     dispatch(addOrUpdate(item.getDto()));
   }
 
@@ -67,6 +67,9 @@ const TodoItemDetail: React.FC<Props> = (props) => {
     dispatch(addOrUpdate(item.getDto()));
   }
 
+  const color200 = item.done ? "bg-green-200" : "bg-blue-200"
+  const color400 = item.done ? "bg-green-400" : "bg-blue-400"
+
 
   // @ts-ignore
   const titleInputJSX = <input type="text" ref={titleInput} name="title" id="title" value={titleInputValue}
@@ -78,18 +81,18 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue}
                               onChange={(evt) => setDateInputValue(evt.target.value)}/>
 
-  return <div className="flex flex-col rounded shadow m-2 bg-blue-400">
+  return <div className={`flex flex-col rounded shadow m-2 ${color400}`}>
     {editMode && dateInputJSX}
     <div className="flex flex-row">
-      <div className="m-2 p-2 mr-0 mb-0 flex-grow rounded bg-blue-200">{editMode ? titleInputJSX : item.title}</div>
-      <button className="m-2 p-2 mb-0 rounded shadow bg-blue-200" onClick={toggleEdit}>
+      <div className={`m-2 p-2 mr-0 mb-0 flex-grow rounded ${color200}`}>{editMode ? titleInputJSX : item.title}</div>
+      <button className={`m-2 p-2 mb-0 rounded shadow ${color200}`} onClick={toggleEdit}>
         {editMode ? 'Save' : 'Edit'}
       </button>
     </div>
-    <div className="m-2 p-2 rounded bg-blue-200">{editMode ? descrInputJSX : item.description}</div>
+    <div className={`m-2 p-2 rounded ${color200}`}>{editMode ? descrInputJSX : item.description}</div>
     <div className="flex flex-row">
-      <button className="m-2 p-2 rounded shadow bg-blue-200" onClick={delItem}>Del</button>
-      <button className="m-2 p-2 rounded shadow bg-blue-200" onClick={setItemDone}>Done</button>
+      <button className={`m-2 p-2 rounded shadow ${color200}`} onClick={delItem}>Del</button>
+      <button className={`m-2 p-2 rounded shadow ${color200}`} onClick={toggleItemDone}>{item.done ? "Unset Done" : "Set Done"}</button>
     </div>
   </div>
 }

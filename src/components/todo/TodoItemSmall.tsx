@@ -7,7 +7,9 @@ type Props = {
 }
 
 const TodoItemSmall: React.FC<Props> = (props) => {
-  return <p onClick={() => props.onClick(props.item.id)} className="p-2 mb-2 bg-blue-500 rounded">
+  const color = props.item.done ? "bg-green-400" : "bg-blue-400"
+
+  return <p onClick={() => props.onClick(props.item.id)} className={`p-2 mb-2 ${color} rounded`} >
     {props.item.title}
   </p>
 }
