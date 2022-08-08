@@ -7,6 +7,9 @@ move todoMap up from calendarDay to calendar
 
 extract input component
 
+implement correct month selection.
+maybe implement weekview
+
 add toolbar
 remove sidebar
 add switch button between calendar and list view
