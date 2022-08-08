@@ -1,9 +1,12 @@
 import CalendarUtils from "../../utils/CalendarUtils";
 import CalendarMonthDay from "./CalendarMonthDay";
 import {useState} from "react";
+import useTodoMap from "../../hooks/useTodoMap";
 
 function CalendarMonth(){
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const todoMap = useTodoMap();
 
   let monthWeekList = CalendarUtils.getMonthWeeksList(selectedDate);
 
@@ -17,8 +20,8 @@ function CalendarMonth(){
            onChange={dateChangeHandler}/>
     {monthWeekList.map((week)=>{
       return <div className="flex flex-row">
-        {week.map((day)=>{
-          return <CalendarMonthDay date={day} />
+        {week.map((date)=>{
+          return <CalendarMonthDay date={date} todoMap={todoMap}/>
         })}
       </div>
     })}

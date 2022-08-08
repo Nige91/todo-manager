@@ -14,7 +14,7 @@ function CalendarMonthDay(props) {
   const [detailModalActive, setDetailModalActive] = useState(false)
   const [id, setId] = useState(-1)
   const dateString = CalendarUtils.formatDate(props.date);
-  const todoMap = useTodoMap();
+  const todoMap = props.todoMap;
   let todoList = []
   if (todoMap[dateString] !== undefined) {
     todoList = Object.values(todoMap[dateString])
