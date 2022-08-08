@@ -1,7 +1,18 @@
-import { useDispatch } from 'react-redux';
-import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
+import React from "react";
 
-function TodoItemDetail(props){
+import { useDispatch } from 'react-redux';
+// @ts-ignore
+import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
+import TodoItemObj from "../../model/TodoItemObj";
+
+type Props = {
+  item: TodoItemObj
+  afterDelete: () => void
+}
+
+
+// @ts-ignore
+const TodoItemDetail: React.FC<Props> = (props) => {
   let item = props.item;
   const dispatch = useDispatch();
 
@@ -22,7 +33,6 @@ function TodoItemDetail(props){
   return <div className="flex flex-col rounded shadow m-2 bg-blue-400">
     <div className="flex flex-row">
       <div className="m-2 p-2 mr-0 mb-0 flex-grow rounded bg-blue-200">{item.title}</div>
-      <div className="m-2 p-2 mb-0 rounded bg-blue-200">{item.responsible}</div>
     </div>
     <div className="m-2 p-2 rounded bg-blue-200">{item.description}</div>
     <div className="flex flex-row">
