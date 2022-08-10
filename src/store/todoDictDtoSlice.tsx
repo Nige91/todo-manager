@@ -2,11 +2,11 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {TodoItemDTO} from "../model/TodoItemObj";
 
-type todoSliceState = {[key: number]: TodoItemDTO}
+export type TodoSliceState = {[key: string]: TodoItemDTO}
 
 export const todoDictDtoSlice = createSlice({
   name: 'todoDictDto',
-  initialState: {} as todoSliceState,
+  initialState: {} as TodoSliceState,
   reducers: {
     addOrUpdate: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload;

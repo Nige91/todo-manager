@@ -1,5 +1,5 @@
 export type TodoItemDTO = {
-  id: number
+  id: string
   title: string
   dateAsTime: number | null;
   description: string;
@@ -7,7 +7,7 @@ export type TodoItemDTO = {
 }
 
 class TodoItemObj {
-  id: number
+  id: string
   title: string
   date: Date | null;
   description: string;
@@ -18,7 +18,7 @@ class TodoItemObj {
   }
 
 
-  constructor(id: number, title: string, date: Date | null, description: string, done=false) {
+  constructor(id: string, title: string, date: Date | null, description: string, done=false) {
     this.id = id;
     this.title = title;
     this.date = date

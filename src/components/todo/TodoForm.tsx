@@ -17,7 +17,7 @@ const TodoForm: React.FC<Props> = (props) => {
 
 
   const onClickHandler = () => {
-    const id = Math.floor(Math.random()*100000000) //TODO implement correct id
+    const id = Math.floor(Math.random()*100000000).toString() //TODO implement correct id
 
     //when creating todoitem from listview, it intentionally doesn't have a date so the item will be instantiated with date null.
     let date = null;
