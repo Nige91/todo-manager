@@ -5,7 +5,7 @@ import TodoItemObj from "../../model/TodoItemObj";
 import React from "react";
 
 type Props = {
-  date: Date,
+  date?: Date,
   afterSubmit: () => void
 }
 

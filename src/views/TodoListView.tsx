@@ -9,13 +9,14 @@ import TodoItemDetail from "../components/todo/TodoItemDetail";
 function TodoListView(){
   const [formModalActive, setFormModalActive] = useState(false)
   const [detailModalActive, setDetailModalActive] = useState(false)
-  const [id, setId] = useState(-1)
+  const [id, setId] = useState("")
 
   const todoMap = useTodoMap();
-  let todoList = []
+  let todoList: TodoItemObj[] = []
   if (todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER] !== undefined) {
     todoList = Object.values(todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER])
   }
+  const todoItem = id !== "" ? todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER][id] : null
 
   const formOutsideClickHandler = () => {
     setFormModalActive(false);
@@ -29,14 +30,14 @@ function TodoListView(){
     setDetailModalActive(false);
   }
 
-  const detailModalClickHandler = (id)=>{
+  const detailModalClickHandler = (id: string)=>{
     setDetailModalActive(true);
     setId(id);
   };
 
   const detailDateChangeHandler = () => {
     setDetailModalActive(false);
-    setId(-1);
+    setId("");
   }
 
   return <div>
@@ -51,9 +52,9 @@ function TodoListView(){
     </Modal>
     <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal"
            backdropDivId="todoBackdrop">
-      <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
-                      afterDateChange={detailDateChangeHandler}
-                      item={id !== -1 ? todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER][id] : null}/>
+      {todoItem !== null && <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
+                                            afterDateChange={detailDateChangeHandler}
+                                            item={todoItem!}/>}
     </Modal>
   </div>
 }

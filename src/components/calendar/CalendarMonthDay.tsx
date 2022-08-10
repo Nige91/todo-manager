@@ -1,15 +1,14 @@
-// @ts-ignore
-import CalendarUtils from "../../utils/CalendarUtils";
-// @ts-ignore
-import Modal from "../ui/Modal";
+
+
 import React, {useState} from "react";
 
 import TodoForm from "../todo/TodoForm";
 import TodoItemDetail from "../todo/TodoItemDetail";
 import TodoList from "../todo/TodoList";
-// @ts-ignore
-import useTodoMap, {TodoMap} from "../../hooks/useTodoMap";
 import TodoItemObj from "../../model/TodoItemObj";
+import {TodoMap} from "../../hooks/useTodoMap";
+import Modal from "../ui/Modal";
+import CalendarUtils from "../../utils/CalendarUtils";
 
 type Props = {
   date: Date,
@@ -17,7 +16,7 @@ type Props = {
 }
 
 const CalendarMonthDay: React.FC<Props> = (props) => {
-  let dayArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  const dayArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   const [formModalActive, setFormModalActive] = useState(false)
   const [detailModalActive, setDetailModalActive] = useState(false)
   const [id, setId] = useState("")
@@ -27,6 +26,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
   if (todoMap[dateString] !== undefined) {
     todoList = Object.values(todoMap[dateString])
   }
+  const todoItem = id !== "" ? todoMap[dateString][id] : null
 
 
   const formButtonCLickHandler = () => {
@@ -65,9 +65,9 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
     </Modal>
     <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal"
            backdropDivId="todoBackdrop">
-      <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
-                      afterDateChange={detailDateChangeHandler}
-                      item={id !== "" ? todoMap[dateString][id] : null}/>
+      {todoItem !== null && <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
+                                            afterDateChange={detailDateChangeHandler}
+                                            item={todoItem}/>}
     </Modal>
   </div>
 }
