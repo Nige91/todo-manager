@@ -2,13 +2,18 @@ import {useRef} from "react";
 import { useDispatch } from 'react-redux';
 import {addOrUpdate} from "../../store/todoDictDtoSlice";
 import TodoItemObj from "../../model/TodoItemObj";
-import CalendarUtils from "../../utils/CalendarUtils";
+import React from "react";
 
-function TodoForm(props){
+type Props = {
+  date: Date,
+  afterSubmit: () => void
+}
+
+const TodoForm: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
-  const titleInput = useRef();
-  const descrInput = useRef();
+  const titleInput = useRef<HTMLInputElement>(null);
+  const descrInput = useRef<HTMLInputElement>(null);
 
 
   const onClickHandler = () => {
@@ -19,10 +24,10 @@ function TodoForm(props){
     if(props.date !== undefined){
       date = props.date;
     }
-    let todoItem = new TodoItemObj(id, titleInput.current.value, date, descrInput.current.value);
+    let todoItem = new TodoItemObj(id, titleInput.current!.value, date, descrInput.current!.value);
     dispatch(addOrUpdate(todoItem.getDto()))
-    titleInput.current.value = ""
-    descrInput.current.value = ""
+    titleInput.current!.value = ""
+    descrInput.current!.value = ""
     props.afterSubmit();
   }
 
