@@ -17,9 +17,9 @@ type Props = {
 // @ts-ignore
 const TodoItemDetail: React.FC<Props> = (props) => {
   let item = props.item;
-  const titleInput: React.MutableRefObject<HTMLInputElement | undefined> = useRef();
-  const descrInput: React.MutableRefObject<HTMLInputElement | undefined>  = useRef();
-  const dateInput: React.MutableRefObject<HTMLInputElement | undefined>  = useRef();
+  const titleInput = useRef<HTMLInputElement>(null);
+  const descrInput = useRef<HTMLInputElement>(null);
+  const dateInput = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false)
@@ -71,13 +71,10 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const color400 = item.done ? "bg-green-400" : "bg-blue-400"
 
 
-  // @ts-ignore
   const titleInputJSX = <input type="text" ref={titleInput} name="title" id="title" value={titleInputValue}
                                onChange={(evt) => setTitleInputValue(evt.target.value)}/>
-  // @ts-ignore
   const descrInputJSX = <input type="text" ref={descrInput} name="descr" id="descr" value={descrInputValue}
                                onChange={(evt) => setDescrInputValue(evt.target.value)}/>
-  // @ts-ignore
   const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue}
                               onChange={(evt) => setDateInputValue(evt.target.value)}/>
 
