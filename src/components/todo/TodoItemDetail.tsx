@@ -74,7 +74,7 @@ const TodoItemDetail: React.FC<Props> = (props) => {
                                onChange={(evt) => setTitleInputValue(evt.target.value)}/>
   const descrInputJSX = <input type="text" ref={descrInput} name="descr" id="descr" value={descrInputValue}
                                onChange={(evt) => setDescrInputValue(evt.target.value)}/>
-  const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue}
+  const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue === null ? undefined : dateInputValue}
                               onChange={(evt) => setDateInputValue(evt.target.value)}/>
 
   return <div className={`flex flex-col rounded shadow m-2 ${color400}`}>
