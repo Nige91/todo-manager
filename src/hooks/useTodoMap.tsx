@@ -1,11 +1,20 @@
 import {useSelector} from "react-redux";
 import TodoItemObj from "../model/TodoItemObj";
+// @ts-ignore
 import CalendarUtils from "../utils/CalendarUtils";
+import {TodoSliceState} from "../store/todoDictDtoSlice";
+import {RootState} from "../store/store";
+
+export type TodoMap = {
+  [date: string]: {
+    [id: string]: TodoItemObj
+  }
+}
 
 function useTodoMap(){
-  const todoList = useSelector(state => Object.keys(state.todoDictDto).map(
+  const todoList = useSelector<RootState, TodoItemObj[]>(state => Object.keys(state.todoDictDto).map(
       (key)=>TodoItemObj.fromDto(state.todoDictDto[key])));
-  let todoDateMap = {}
+  let todoMap: TodoMap = {}
   todoList.forEach((item) => {
     let dateString;
     if(item.date === null){
@@ -14,12 +23,12 @@ function useTodoMap(){
     else{
       dateString = CalendarUtils.formatDate(item.date);
     }
-    if(todoDateMap[dateString] === undefined){
-      todoDateMap[dateString] = {};
+    if(todoMap[dateString] === undefined){
+      todoMap[dateString] = {};
     }
-    todoDateMap[dateString][item.id] = item;
+    todoMap[dateString][item.id] = item;
   })
-  return todoDateMap;
+  return todoMap;
 }
 
 export default useTodoMap;
