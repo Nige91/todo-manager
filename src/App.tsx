@@ -1,7 +1,8 @@
+import React from 'react';
 import './App.css';
+// @ts-ignore
 import Sidebar from "./components/sidebar/Sidebar";
 import RouterView from "./views/RouterView";
-import TodoListView from "./views/TodoListView";
 
 function App() {
   return (

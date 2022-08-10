@@ -1,10 +1,9 @@
 import React, {useRef, useState} from "react";
 
 import { useDispatch } from 'react-redux';
-// @ts-ignore
-import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
 import TodoItemObj from "../../model/TodoItemObj";
 import CalendarUtils from "../../utils/CalendarUtils";
+import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
 
 type Props = {
   item: TodoItemObj
@@ -13,7 +12,6 @@ type Props = {
 }
 
 
-// @ts-ignore
 const TodoItemDetail: React.FC<Props> = (props) => {
   let item = props.item;
   const titleInput = useRef<HTMLInputElement>(null);
@@ -25,10 +23,6 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const [titleInputValue, setTitleInputValue] = useState(item.title)
   const [descrInputValue, setDescrInputValue] = useState(item.description)
   const [dateInputValue, setDateInputValue] = useState(item.date !== null ? CalendarUtils.formatDateForInput(item.date) : null)
-
-  if(props.item === undefined){
-    return;
-  }
 
   const toggleItemDone = () => {
     item.done = !item.done;
