@@ -1,27 +1,35 @@
+// @ts-ignore
 import CalendarUtils from "../../utils/CalendarUtils";
+// @ts-ignore
 import Modal from "../ui/Modal";
 import React, {useState} from "react";
 
 import TodoForm from "../todo/TodoForm";
 import TodoItemDetail from "../todo/TodoItemDetail";
 import TodoList from "../todo/TodoList";
-import useTodoMap from "../../hooks/useTodoMap";
+// @ts-ignore
+import useTodoMap, {TodoMap} from "../../hooks/useTodoMap";
 import TodoItemObj from "../../model/TodoItemObj";
 
-function CalendarMonthDay(props) {
+type Props = {
+  date: Date,
+  todoMap: TodoMap
+}
+
+const CalendarMonthDay: React.FC<Props> = (props) => {
   let dayArr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
   const [formModalActive, setFormModalActive] = useState(false)
   const [detailModalActive, setDetailModalActive] = useState(false)
-  const [id, setId] = useState(-1)
+  const [id, setId] = useState("")
   const dateString = CalendarUtils.formatDate(props.date);
   const todoMap = props.todoMap;
-  let todoList = []
+  let todoList: TodoItemObj[] = []
   if (todoMap[dateString] !== undefined) {
     todoList = Object.values(todoMap[dateString])
   }
 
 
-  const formButtonCLickHandler = (evt) => {
+  const formButtonCLickHandler = () => {
     setFormModalActive(true);
   }
 
@@ -29,7 +37,7 @@ function CalendarMonthDay(props) {
     setFormModalActive(false);
   }
 
-  const todoClickHandler = (id) => {
+  const todoClickHandler = (id: string) => {
     setDetailModalActive(true);
     setId(id);
   }
@@ -40,7 +48,7 @@ function CalendarMonthDay(props) {
 
   const detailDateChangeHandler = () => {
     setDetailModalActive(false);
-    setId(-1)
+    setId("")
   }
 
   return <div className="p-2 m-2 shadow rounded bg-blue-200">
@@ -59,7 +67,7 @@ function CalendarMonthDay(props) {
            backdropDivId="todoBackdrop">
       <TodoItemDetail afterDelete={detailModalOutsideClickHandler}
                       afterDateChange={detailDateChangeHandler}
-                      item={id !== -1 ? todoMap[dateString][id] : null}/>
+                      item={id !== "" ? todoMap[dateString][id] : null}/>
     </Modal>
   </div>
 }

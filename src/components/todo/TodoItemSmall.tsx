@@ -2,7 +2,7 @@ import React from "react";
 import TodoItemObj from "../../model/TodoItemObj";
 
 type Props = {
-  onClick: (id: number) => void
+  onClick: (id: string) => void
   item: TodoItemObj
 }
 

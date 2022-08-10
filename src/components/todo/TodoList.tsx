@@ -4,7 +4,7 @@ import TodoItemObj from "../../model/TodoItemObj";
 
 type Props = {
   todoList: TodoItemObj[],
-  onItemClick: (id: number) => void
+  onItemClick: (id: string) => void
 }
 
 const TodoList: React.FC<Props> = (props) => {
