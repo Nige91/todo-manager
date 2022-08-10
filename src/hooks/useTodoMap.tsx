@@ -1,9 +1,7 @@
 import {useSelector} from "react-redux";
 import TodoItemObj from "../model/TodoItemObj";
-// @ts-ignore
-import CalendarUtils from "../utils/CalendarUtils";
-import {TodoSliceState} from "../store/todoDictDtoSlice";
 import {RootState} from "../store/store";
+import CalendarUtils from "../utils/CalendarUtils";
 
 export type TodoMap = {
   [date: string]: {

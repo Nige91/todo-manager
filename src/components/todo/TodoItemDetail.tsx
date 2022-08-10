@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 // @ts-ignore
 import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
 import TodoItemObj from "../../model/TodoItemObj";
-// @ts-ignore
 import CalendarUtils from "../../utils/CalendarUtils";
 
 type Props = {

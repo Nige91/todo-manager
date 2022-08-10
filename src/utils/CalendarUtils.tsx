@@ -1,18 +1,18 @@
-const zeroPad = (num, places) => String(num).padStart(places, '0');
+const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
 
 class CalendarUtils{
-  static addDays(date, days){
+  static addDays(date: Date, days: number){
     let result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
   }
 
-  static formatDate(date){
+  static formatDate(date: Date){
     return zeroPad(date.getDate(), 2) + '.'
         + zeroPad(date.getMonth() + 1, 2) + '.' + date.getFullYear();
   }
 
-  static formatDateForInput(date){
+  static formatDateForInput(date: Date){
     return zeroPad(date.getFullYear(), 2) + '-'
         + zeroPad(date.getMonth() +1, 2) + '-' + zeroPad(date.getDate(), 2);
   }
@@ -22,7 +22,7 @@ class CalendarUtils{
    * @param date
    * @returns returns a list of days in this week
    */
-  static getWeekDaysList(date){
+  static getWeekDaysList(date: Date){
     let day = date.getDay();
     let result = [];
 
@@ -45,7 +45,7 @@ class CalendarUtils{
    * @param date
    * @returns returns a list of all the weeks in the month, a week is a list of all the days in the week, so the result is a list of lists of days
    */
-  static getMonthWeeksList(date){
+  static getMonthWeeksList(date: Date){
     let dayOfMonth = date.getDate();
     let dateRunner = this.addDays(date, -date.getDate() + 1); //initialize to first day of month
     let result = [];
@@ -57,7 +57,7 @@ class CalendarUtils{
     return result;
   }
 
-  static compareDate(date1, date2){
+  static compareDate(date1: Date, date2: Date){
     if(date1 === null || date2 === null){
       return false;
     }
