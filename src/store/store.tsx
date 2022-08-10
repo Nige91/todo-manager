@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import todoDictDtoReducer from './todoDictDtoSlice'
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     todoDictDto: todoDictDtoReducer,
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+
+export default store;
 
 
 
