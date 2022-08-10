@@ -1,4 +1,4 @@
-type TodoItemDTO = {
+export type TodoItemDTO = {
   id: number
   title: string
   dateAsTime: number | null;
