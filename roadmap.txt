@@ -18,6 +18,8 @@ add authentication
 implement collapse in both views
 implement counter (done/total) in both views
 
+data validation, error handling
+
 add explanation on how to use the app
 
 add settings to disable explanation
