@@ -1,8 +1,9 @@
-integrate typescript
-
 add backend
 implement way of syncing data between memory, discspace and server
 
+adapt structure to store todos, stop fetching all todos
+
+add and display syncstatus on todoitem
 
 extract input component
 
@@ -25,8 +26,6 @@ add explanation on how to use the app
 add settings to disable explanation
 
 highlight current day in calendar
-
-try performance with 100k items and if issue, only map items by date once in calendar, instead of for every day
 
 make responsive
 finalize jsx and css
