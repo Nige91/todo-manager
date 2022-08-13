@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {TodoItemDTO} from "../model/TodoItemObj";
+import {SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
 
 export type TodoSliceState = {[key: string]: TodoItemDTO}
 
@@ -10,6 +10,7 @@ export const todoDictDtoSlice = createSlice({
   reducers: {
     addOrUpdate: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload;
+      todoItemDto.syncStatus = SyncStatus.Pending;
       state[todoItemDto.id] = todoItemDto;
     },
     remove: (state, action) => {
