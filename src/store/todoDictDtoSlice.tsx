@@ -35,15 +35,16 @@ export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknow
   return async (dispatch) => {
     dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Syncing}))
     let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item);
-    console.log("start sync")
+    console.log("start sync for item "+item.id)
     setDoc(doc(firebaseDb, todoItemsCollectionName, item.id), itemFirebaseDTO)
         .then(()=>{
-          console.log("start sync")
           dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Complete}))
+          console.log("sync success for item "+item.id)
         })
         .catch(reason => {
           //TODO proper error handling
           dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Failed}))
+          console.log("sync failed for item "+item.id)
         })
     }
 }
