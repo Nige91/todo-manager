@@ -1,5 +1,5 @@
 import {AnyAction, createSlice, PayloadAction, ThunkAction} from "@reduxjs/toolkit";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDocs, query, collection } from "firebase/firestore";
 
 
 import {SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
@@ -19,6 +19,9 @@ export const todoDictDtoSlice = createSlice({
       todoItemDto.syncStatus = SyncStatus.Pending;
       state[todoItemDto.id] = todoItemDto;
     },
+    addList: (state, action: PayloadAction<TodoItemDTO[]>) => {
+      action.payload.forEach(item => state[item.id] = item)
+    },
     setSyncStatus: (state, action: PayloadAction<{id: string, newStatus: SyncStatus}>) => {
       let todoItemDto = state[action.payload.id];
       todoItemDto.syncStatus = action.payload.newStatus;
@@ -30,6 +33,18 @@ export const todoDictDtoSlice = createSlice({
     }
   }
 });
+
+export const fetchTodo = (): ThunkAction<void, RootState, unknown, AnyAction> => {
+  return async (dispatch) => {
+    const q = query(collection(firebaseDb, todoItemsCollectionName));
+
+    const querySnapshot = await getDocs(q);
+    // @ts-ignore
+    const todoDTOList = querySnapshot.docs.map(doc => FirebaseUtils.convertFirebaseToTodoItemDTO(doc.data()));
+    dispatch(todoDictDtoSlice.actions.addList(todoDTOList))
+    console.log("successfully fetched todoList: "+todoDTOList);
+  }
+}
 
 export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch) => {
@@ -49,5 +64,5 @@ export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknow
     }
 }
 
-export const { addOrUpdate, setSyncStatus, remove } = todoDictDtoSlice.actions
+export const { addOrUpdate, addList, setSyncStatus, remove } = todoDictDtoSlice.actions
 export default todoDictDtoSlice.reducer
