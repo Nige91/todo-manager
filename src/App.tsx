@@ -6,12 +6,16 @@ import RouterView from "./views/RouterView";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store/store";
 import {SyncStatus, TodoItemDTO} from "./model/TodoItemObj";
-import {syncTodo} from "./store/todoDictDtoSlice";
+import {fetchTodo, syncTodo} from "./store/todoDictDtoSlice";
 import {ThunkDispatch} from "@reduxjs/toolkit";
 
 function App() {
   const todoItemDTOList = useSelector<RootState, TodoItemDTO[]>(state => Object.values(state.todoDictDto));
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  useEffect(()=>{
+    dispatch(fetchTodo())
+  }, [dispatch])
 
   useEffect(()=> {
     todoItemDTOList.filter(item=>item.syncStatus === SyncStatus.Pending).forEach(item=>{

@@ -1,4 +1,4 @@
-import {TodoItemDTO} from "../model/TodoItemObj";
+import TodoItemObj, {SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
 
 export class FirebaseUtils{
   static convertTodoItemDTOForFirebase(item: TodoItemDTO):Omit<TodoItemDTO, 'syncStatus'>{
@@ -11,5 +11,11 @@ export class FirebaseUtils{
     })
     // @ts-ignore
     return result;
+  }
+  static convertFirebaseToTodoItemDTO(item: Omit<TodoItemDTO, 'syncStatus'>):TodoItemDTO{
+    // @ts-ignore
+    item.syncStatus = SyncStatus.Complete;
+    // @ts-ignore
+    return item;
   }
 }
