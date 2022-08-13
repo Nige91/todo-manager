@@ -75,6 +75,7 @@ const TodoItemDetail: React.FC<Props> = (props) => {
     {editMode && dateInputJSX}
     <div className="flex flex-row">
       <div className={`m-2 p-2 mr-0 mb-0 flex-grow rounded ${color200}`}>{editMode ? titleInputJSX : item.title}</div>
+      <div className={`m-2 p-2 mr-0 mb-0 flex-grow rounded ${color200}`}>{item.syncStatus}</div>
       <button className={`m-2 p-2 mb-0 rounded shadow ${color200}`} onClick={toggleEdit}>
         {editMode ? 'Save' : 'Edit'}
       </button>
