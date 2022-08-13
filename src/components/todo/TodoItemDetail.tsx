@@ -52,7 +52,7 @@ const TodoItemDetail: React.FC<Props> = (props) => {
       item.description = descrValue;
     }
     let dateValue = dateInput.current?.valueAsDate
-    let dateChanged = item.date?.getTime() !== dateValue;
+    let dateChanged = item.date?.getTime() !== dateValue?.getTime();
     item.date = dateValue === undefined ? null : dateValue
     if(dateChanged){
       props.afterDateChange() //TODO rename fucntion
