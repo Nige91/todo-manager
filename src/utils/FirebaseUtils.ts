@@ -1,10 +1,10 @@
-import TodoItemObj, {SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
+import TodoItemObj, {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
 
 export class FirebaseUtils{
-  static convertTodoItemDTOForFirebase(item: TodoItemDTO):Omit<TodoItemDTO, 'syncStatus'>{
+  static convertTodoItemDTOForFirebase(item: TodoItemDTO):Omit<TodoItemDTO, 'syncStatus' | 'syncAction'>{
     let result = {}
     Object.keys(item).forEach(key=>{
-      if(key !== 'syncStatus'){
+      if(key !== 'syncStatus' && key !== 'syncAction'){
         // @ts-ignore
         result[key] = item[key];
       }
@@ -12,9 +12,11 @@ export class FirebaseUtils{
     // @ts-ignore
     return result;
   }
-  static convertFirebaseToTodoItemDTO(item: Omit<TodoItemDTO, 'syncStatus'>):TodoItemDTO{
+  static convertFirebaseToTodoItemDTO(item: Omit<TodoItemDTO, 'syncStatus' | 'syncAction'>):TodoItemDTO{
     // @ts-ignore
     item.syncStatus = SyncStatus.COMPLETE;
+    // @ts-ignore
+    item.syncAction = SyncAction.ADD_OR_UPDATE;
     // @ts-ignore
     return item;
   }
