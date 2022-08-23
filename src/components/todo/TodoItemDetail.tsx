@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 
 import { useDispatch } from 'react-redux';
-import TodoItemObj from "../../model/TodoItemObj";
+import TodoItemObj, {SyncStatus} from "../../model/TodoItemObj";
 import CalendarUtils from "../../utils/CalendarUtils";
 import {addOrUpdate, requestRemove} from "../../store/todoDictDtoSlice";
 

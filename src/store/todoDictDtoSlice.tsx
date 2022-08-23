@@ -1,8 +1,8 @@
 import {AnyAction, createSlice, PayloadAction, ThunkAction} from "@reduxjs/toolkit";
-import { doc, setDoc, getDocs, query, collection } from "firebase/firestore";
+import {collection, doc, getDocs, query, setDoc, deleteDoc} from "firebase/firestore";
 
 
-import {SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
+import {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
 import {RootState} from "./store";
 import {firebaseDb} from "../index";
 import {FirebaseUtils} from "../utils/FirebaseUtils";
@@ -27,9 +27,15 @@ export const todoDictDtoSlice = createSlice({
       todoItemDto.syncStatus = action.payload.newStatus;
       state[action.payload.id] = todoItemDto;
     },
-    requestRemove: (state, action: PayloadAction<TodoItemDTO>) => {
+    remove: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload;
       delete state[todoItemDto.id];
+    },
+    requestRemove: (state, action: PayloadAction<TodoItemDTO>) => {
+      let todoItemDto = action.payload
+      todoItemDto.syncStatus = SyncStatus.PENDING;
+      todoItemDto.syncAction = SyncAction.DELETE;
+      state[todoItemDto.id] = todoItemDto;
     }
   }
 });
@@ -49,20 +55,35 @@ export const fetchTodo = (): ThunkAction<void, RootState, unknown, AnyAction> =>
 export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch) => {
     dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.SYNCING}))
-    let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item);
-    console.log("start sync for item "+item.id)
-    setDoc(doc(firebaseDb, todoItemsCollectionName, item.id), itemFirebaseDTO)
-        .then(()=>{
-          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.COMPLETE}))
-          console.log("sync success for item "+item.id)
-        })
-        .catch(reason => {
-          //TODO proper error handling
-          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.FAILED}))
-          console.log("sync failed for item "+item.id)
-        })
+    if (item.syncAction === SyncAction.ADD_OR_UPDATE) {
+      let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item);
+      console.log("start sync for item " + item.id)
+      setDoc(doc(firebaseDb, todoItemsCollectionName, item.id), itemFirebaseDTO)
+          .then(() => {
+            dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.COMPLETE}))
+            console.log("sync success for item " + item.id)
+          })
+          .catch(reason => {
+            //TODO proper error handling
+            dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.FAILED}))
+            console.log("sync failed for item " + item.id)
+          })
     }
+    else if(item.syncAction === SyncAction.DELETE){
+      console.log("start delete for item " + item.id)
+      deleteDoc(doc(firebaseDb, todoItemsCollectionName, item.id))
+          .then(() => {
+            dispatch(todoDictDtoSlice.actions.remove(item))
+            console.log("sync delete success for item " + item.id)
+          })
+          .catch(reason => {
+            //TODO proper error handling
+            dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.FAILED}))
+            console.log("sync delete failed for item " + item.id)
+          })
+    }
+  }
 }
 
-export const { addOrUpdate, addList, setSyncStatus, requestRemove } = todoDictDtoSlice.actions
+export const { addOrUpdate, addList, setSyncStatus, remove, requestRemove } = todoDictDtoSlice.actions
 export default todoDictDtoSlice.reducer
