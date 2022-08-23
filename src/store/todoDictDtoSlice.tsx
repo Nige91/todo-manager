@@ -16,7 +16,7 @@ export const todoDictDtoSlice = createSlice({
   reducers: {
     addOrUpdate: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload;
-      todoItemDto.syncStatus = SyncStatus.Pending;
+      todoItemDto.syncStatus = SyncStatus.PENDING;
       state[todoItemDto.id] = todoItemDto;
     },
     addList: (state, action: PayloadAction<TodoItemDTO[]>) => {
@@ -48,17 +48,17 @@ export const fetchTodo = (): ThunkAction<void, RootState, unknown, AnyAction> =>
 
 export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch) => {
-    dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Syncing}))
+    dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.SYNCING}))
     let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item);
     console.log("start sync for item "+item.id)
     setDoc(doc(firebaseDb, todoItemsCollectionName, item.id), itemFirebaseDTO)
         .then(()=>{
-          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Complete}))
+          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.COMPLETE}))
           console.log("sync success for item "+item.id)
         })
         .catch(reason => {
           //TODO proper error handling
-          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.Failed}))
+          dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.FAILED}))
           console.log("sync failed for item "+item.id)
         })
     }

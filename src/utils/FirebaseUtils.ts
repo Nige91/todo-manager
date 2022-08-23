@@ -14,7 +14,7 @@ export class FirebaseUtils{
   }
   static convertFirebaseToTodoItemDTO(item: Omit<TodoItemDTO, 'syncStatus'>):TodoItemDTO{
     // @ts-ignore
-    item.syncStatus = SyncStatus.Complete;
+    item.syncStatus = SyncStatus.COMPLETE;
     // @ts-ignore
     return item;
   }

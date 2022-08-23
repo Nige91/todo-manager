@@ -18,7 +18,7 @@ function App() {
   }, [dispatch])
 
   useEffect(()=> {
-    todoItemDTOList.filter(item=>item.syncStatus === SyncStatus.Pending).forEach(item=>{
+    todoItemDTOList.filter(item=>item.syncStatus === SyncStatus.PENDING).forEach(item=>{
       dispatch(syncTodo(item));
     })
   }, [todoItemDTOList, dispatch])

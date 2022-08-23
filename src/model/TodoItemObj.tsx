@@ -1,8 +1,8 @@
 export enum SyncStatus{
-  Pending,
-  Syncing,
-  Complete,
-  Failed
+  PENDING,
+  SYNCING,
+  COMPLETE,
+  FAILED
 }
 
 export type TodoItemDTO = {
@@ -28,7 +28,7 @@ class TodoItemObj {
 
 
   constructor(id: string, title: string, date: Date | null, description: string,
-              syncStatus: SyncStatus = SyncStatus.Pending, done=false) {
+              syncStatus: SyncStatus = SyncStatus.PENDING, done=false) {
     this.id = id;
     this.title = title;
     this.date = date
