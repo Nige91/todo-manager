@@ -12,9 +12,14 @@ class CalendarUtils{
         + zeroPad(date.getMonth() + 1, 2) + '.' + date.getFullYear();
   }
 
-  static formatDateForInput(date: Date){
+  static formatDateForDateInput(date: Date){
     return zeroPad(date.getFullYear(), 2) + '-'
         + zeroPad(date.getMonth() +1, 2) + '-' + zeroPad(date.getDate(), 2);
+  }
+
+  static formatDateForMonthInput(date: Date){
+    return zeroPad(date.getFullYear(), 2) + '-'
+        + zeroPad(date.getMonth() +1, 2);
   }
 
   /**

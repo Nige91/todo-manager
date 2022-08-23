@@ -14,14 +14,14 @@ const CalendarMonth: React.FC = () => {
 
   let monthWeekList = CalendarUtils.getMonthWeeksList(selectedDate === null ? new Date() : selectedDate);
 
-  const dateChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedDate(evt.target.valueAsDate)
+  const monthChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedDate(new Date(evt.target.value + '-01'))
   }
 
   return <div className="flex flex-col">
-    <input type="date"
-           value={selectedDate === null ? undefined : CalendarUtils.formatDateForInput(selectedDate)}
-           onChange={dateChangeHandler}/>
+    <input type="month"
+           value={selectedDate === null ? undefined : CalendarUtils.formatDateForMonthInput(selectedDate)}
+           onChange={monthChangeHandler}/>
     {monthWeekList.map((week)=>{
       return <div className="flex flex-row">
         {week.map((date)=>{

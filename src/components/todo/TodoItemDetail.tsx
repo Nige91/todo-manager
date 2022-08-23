@@ -22,7 +22,7 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const [editMode, setEditMode] = useState(false)
   const [titleInputValue, setTitleInputValue] = useState(item.title)
   const [descrInputValue, setDescrInputValue] = useState(item.description)
-  const [dateInputValue, setDateInputValue] = useState(item.date !== null ? CalendarUtils.formatDateForInput(item.date) : null)
+  const [dateInputValue, setDateInputValue] = useState(item.date !== null ? CalendarUtils.formatDateForDateInput(item.date) : null)
 
   const toggleItemDone = () => {
     item.done = !item.done;
