@@ -1,14 +1,14 @@
-add backend
-implement way of syncing data between memory, discspace and server
+add remove for firestore
 
 adapt structure to store todos, stop fetching all todos
 
-add and display syncstatus on todoitem
+correctly display syncstatus on todo
 
-extract input component
+extract input component ?
 
-implement correct month selection.
-maybe implement weekview
+fix warnings
+
+implement weekview ?
 
 add toolbar
 remove sidebar
