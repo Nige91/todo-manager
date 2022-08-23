@@ -27,7 +27,7 @@ export const todoDictDtoSlice = createSlice({
       todoItemDto.syncStatus = action.payload.newStatus;
       state[action.payload.id] = todoItemDto;
     },
-    remove: (state, action) => {
+    requestRemove: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload;
       delete state[todoItemDto.id];
     }
@@ -64,5 +64,5 @@ export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknow
     }
 }
 
-export const { addOrUpdate, addList, setSyncStatus, remove } = todoDictDtoSlice.actions
+export const { addOrUpdate, addList, setSyncStatus, requestRemove } = todoDictDtoSlice.actions
 export default todoDictDtoSlice.reducer

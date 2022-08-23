@@ -3,7 +3,7 @@ import React, {useRef, useState} from "react";
 import { useDispatch } from 'react-redux';
 import TodoItemObj from "../../model/TodoItemObj";
 import CalendarUtils from "../../utils/CalendarUtils";
-import {addOrUpdate, remove} from "../../store/todoDictDtoSlice";
+import {addOrUpdate, requestRemove} from "../../store/todoDictDtoSlice";
 
 type Props = {
   item: TodoItemObj
@@ -30,7 +30,7 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   }
 
   const delItem = () => {
-    dispatch(remove(item.getDto()));
+    dispatch(requestRemove(item.getDto()));
     props.afterDelete();
   }
 
