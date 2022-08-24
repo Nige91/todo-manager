@@ -20,6 +20,7 @@ const CalendarMonth: React.FC = () => {
 
   return <div className="flex flex-col">
     <input type="month"
+           className="max-w-md"
            value={selectedDate === null ? undefined : CalendarUtils.formatDateForMonthInput(selectedDate)}
            onChange={monthChangeHandler}/>
     {monthWeekList.map((week)=>{

@@ -8,6 +8,7 @@ import {RootState} from "./store/store";
 import {SyncStatus, TodoItemDTO} from "./model/TodoItemObj";
 import {fetchTodo, syncTodo} from "./store/todoDictDtoSlice";
 import {ThunkDispatch} from "@reduxjs/toolkit";
+import Toolbar from "./components/toolbar/Toolbar";
 
 function App() {
   const todoItemDTOList = useSelector<RootState, TodoItemDTO[]>(state => Object.values(state.todoDictDto));
@@ -24,7 +25,8 @@ function App() {
   }, [todoItemDTOList, dispatch])
 
   return (
-      <div className="flex flex-row">
+      <div className="flex flex-col">
+        <Toolbar/>
         <RouterView/>
       </div>
   );

@@ -40,7 +40,7 @@ function TodoListView(){
     setId("");
   }
 
-  return <div>
+  return <div className="m-2 p-2 max-w-md">
     <h1>Todo List</h1>
     <TodoList
         onItemClick={detailModalClickHandler}

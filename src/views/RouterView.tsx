@@ -9,8 +9,7 @@ function RouterView(){
   return <div>
     <Routes>
       <Route path="/" element={<TodoListView/>}/>
-      <Route path="/route1" element={<TodoListView/>}/>
-      <Route path="/route3" element={<CalendarView/>}/>
+      <Route path="/calendar" element={<CalendarView/>}/>
     </Routes>
   </div>
 }
