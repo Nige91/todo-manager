@@ -1,12 +1,6 @@
-add remove for firestore
-
 adapt structure to store todos, stop fetching all todos
 
-correctly display syncstatus on todo
-
 extract input component ?
-
-fix warnings
 
 implement weekview ?
 
