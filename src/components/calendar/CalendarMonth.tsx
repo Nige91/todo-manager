@@ -1,18 +1,18 @@
 
-import CalendarMonthDay from "./CalendarMonthDay";
-import {useState} from "react";
-import useTodoMap from "../../hooks/useTodoMap";
-import React from "react";
-import CalendarUtils from "../../utils/CalendarUtils";
+import CalendarMonthDay from "./CalendarMonthDay"
+import {useState} from "react"
+import useTodoMap from "../../hooks/useTodoMap"
+import React from "react"
+import CalendarUtils from "../../utils/CalendarUtils"
 
 
 
 const CalendarMonth: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
 
-  const todoMap = useTodoMap();
+  const todoMap = useTodoMap()
 
-  let monthWeekList = CalendarUtils.getMonthWeeksList(selectedDate === null ? new Date() : selectedDate);
+  let monthWeekList = CalendarUtils.getMonthWeeksList(selectedDate === null ? new Date() : selectedDate)
 
   const monthChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(new Date(evt.target.value + '-01'))
@@ -33,4 +33,4 @@ const CalendarMonth: React.FC = () => {
   </div>
 }
 
-export default CalendarMonth;
+export default CalendarMonth

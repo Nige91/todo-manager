@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 
 
 const Backdrop:React.FC<{onClick: ()=>void }> = (props) =>{
@@ -29,14 +29,14 @@ const Modal: React.FC<Props> = (props) => {
         ReactDOM.createPortal(
             <Backdrop onClick={props.onClickOutside}/>,
             document.getElementById(props.backdropDivId)!
-        )};
+        )}
     {props.active &&
         document.getElementById(props.modalDivId) !== null &&
         ReactDOM.createPortal(
             <ModalContent>{props.children}</ModalContent>,
             document.getElementById(props.modalDivId)!
-        )};
+        )}
   </React.Fragment>
 }
 
-export default Modal;
+export default Modal

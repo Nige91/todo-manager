@@ -1,6 +1,6 @@
-import React from "react";
-import TodoItemSmall from "./TodoItemSmall";
-import TodoItemObj from "../../model/TodoItemObj";
+import React from "react"
+import TodoItemSmall from "./TodoItemSmall"
+import TodoItemObj from "../../model/TodoItemObj"
 
 type Props = {
   todoList: TodoItemObj[],
@@ -13,4 +13,4 @@ const TodoList: React.FC<Props> = (props) => {
   </div>
 }
 
-export default TodoList;
+export default TodoList

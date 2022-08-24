@@ -1,17 +1,17 @@
-import TodoList from "../components/todo/TodoList";
-import React, {useState} from "react";
-import Modal from "../components/ui/Modal";
-import TodoForm from "../components/todo/TodoForm";
-import TodoItemObj from "../model/TodoItemObj";
-import useTodoMap from "../hooks/useTodoMap";
-import TodoItemDetail from "../components/todo/TodoItemDetail";
+import TodoList from "../components/todo/TodoList"
+import React, {useState} from "react"
+import Modal from "../components/ui/Modal"
+import TodoForm from "../components/todo/TodoForm"
+import TodoItemObj from "../model/TodoItemObj"
+import useTodoMap from "../hooks/useTodoMap"
+import TodoItemDetail from "../components/todo/TodoItemDetail"
 
 function TodoListView(){
   const [formModalActive, setFormModalActive] = useState(false)
   const [detailModalActive, setDetailModalActive] = useState(false)
   const [id, setId] = useState("")
 
-  const todoMap = useTodoMap();
+  const todoMap = useTodoMap()
   let todoList: TodoItemObj[] = []
   if (todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER] !== undefined) {
     todoList = Object.values(todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER])
@@ -19,25 +19,25 @@ function TodoListView(){
   const todoItem = id !== "" ? todoMap[TodoItemObj.WITHOUT_DATE_IDENTIFIER][id] : null
 
   const formOutsideClickHandler = () => {
-    setFormModalActive(false);
+    setFormModalActive(false)
   }
 
   const formClickHandler = ()=>{
-    setFormModalActive(true);
-  };
+    setFormModalActive(true)
+  }
 
   const detailModalOutsideClickHandler = () => {
-    setDetailModalActive(false);
+    setDetailModalActive(false)
   }
 
   const detailModalClickHandler = (id: string)=>{
-    setDetailModalActive(true);
-    setId(id);
-  };
+    setDetailModalActive(true)
+    setId(id)
+  }
 
   const detailDateChangeHandler = () => {
-    setDetailModalActive(false);
-    setId("");
+    setDetailModalActive(false)
+    setId("")
   }
 
   return <div className="m-2 p-2 max-w-md">
@@ -59,4 +59,4 @@ function TodoListView(){
   </div>
 }
 
-export default TodoListView;
+export default TodoListView

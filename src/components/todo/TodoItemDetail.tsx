@@ -1,9 +1,9 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 
-import { useDispatch } from 'react-redux';
-import TodoItemObj, {SyncStatus} from "../../model/TodoItemObj";
-import CalendarUtils from "../../utils/CalendarUtils";
-import {addOrUpdate, requestRemove} from "../../store/todoDictDtoSlice";
+import { useDispatch } from 'react-redux'
+import TodoItemObj, {SyncStatus} from "../../model/TodoItemObj"
+import CalendarUtils from "../../utils/CalendarUtils"
+import {addOrUpdate, requestRemove} from "../../store/todoDictDtoSlice"
 
 type Props = {
   item: TodoItemObj
@@ -13,25 +13,25 @@ type Props = {
 
 
 const TodoItemDetail: React.FC<Props> = (props) => {
-  let item = props.item;
-  const titleInput = useRef<HTMLInputElement>(null);
-  const descrInput = useRef<HTMLInputElement>(null);
-  const dateInput = useRef<HTMLInputElement>(null);
+  let item = props.item
+  const titleInput = useRef<HTMLInputElement>(null)
+  const descrInput = useRef<HTMLInputElement>(null)
+  const dateInput = useRef<HTMLInputElement>(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [editMode, setEditMode] = useState(false)
   const [titleInputValue, setTitleInputValue] = useState(item.title)
   const [descrInputValue, setDescrInputValue] = useState(item.description)
   const [dateInputValue, setDateInputValue] = useState(item.date !== null ? CalendarUtils.formatDateForDateInput(item.date) : null)
 
   const toggleItemDone = () => {
-    item.done = !item.done;
-    dispatch(addOrUpdate(item.getDto()));
+    item.done = !item.done
+    dispatch(addOrUpdate(item.getDto()))
   }
 
   const delItem = () => {
-    dispatch(requestRemove(item.getDto()));
-    props.afterDelete();
+    dispatch(requestRemove(item.getDto()))
+    props.afterDelete()
   }
 
   const toggleEdit = () => {
@@ -45,19 +45,19 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const updateItem = () => {
     let titleValue =  titleInput.current?.value
     if (typeof titleValue === "string") {
-      item.title = titleValue;
+      item.title = titleValue
     }
     let descrValue = descrInput.current?.value
     if (typeof descrValue === "string") {
-      item.description = descrValue;
+      item.description = descrValue
     }
     let dateValue = dateInput.current?.valueAsDate
-    let dateChanged = item.date?.getTime() !== dateValue?.getTime();
+    let dateChanged = item.date?.getTime() !== dateValue?.getTime()
     item.date = dateValue === undefined ? null : dateValue
     if(dateChanged){
       props.afterDateChange() //TODO rename fucntion
     }
-    dispatch(addOrUpdate(item.getDto()));
+    dispatch(addOrUpdate(item.getDto()))
   }
 
   const color200 = item.done ? "bg-green-200" : "bg-blue-200"
@@ -88,4 +88,4 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   </div>
 }
 
-export default TodoItemDetail;
+export default TodoItemDetail

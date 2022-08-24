@@ -1,5 +1,5 @@
-import React from "react";
-import CalendarMonth from "./CalendarMonth";
+import React from "react"
+import CalendarMonth from "./CalendarMonth"
 
 function Calendar(){
   return <div>
@@ -7,4 +7,4 @@ function Calendar(){
   </div>
 }
 
-export default Calendar;
+export default Calendar

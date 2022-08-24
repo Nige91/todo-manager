@@ -13,9 +13,9 @@ export enum SyncAction{
 export type TodoItemDTO = {
   id: string
   title: string
-  dateAsTime: number | null;
-  description: string;
-  done: boolean;
+  dateAsTime: number | null
+  description: string
+  done: boolean
   syncStatus: SyncStatus
   syncAction: SyncAction
 }
@@ -23,9 +23,9 @@ export type TodoItemDTO = {
 class TodoItemObj {
   id: string
   title: string
-  date: Date | null;
-  description: string;
-  done: boolean;
+  date: Date | null
+  description: string
+  done: boolean
   syncStatus: SyncStatus
   syncAction: SyncAction
 
@@ -38,13 +38,13 @@ class TodoItemObj {
               syncStatus: SyncStatus = SyncStatus.PENDING,
               syncAction: SyncAction = SyncAction.ADD_OR_UPDATE,
               done=false) {
-    this.id = id;
-    this.title = title;
+    this.id = id
+    this.title = title
     this.date = date
-    this.description = description;
-    this.syncStatus = syncStatus;
-    this.syncAction = syncAction;
-    this.done=done;
+    this.description = description
+    this.syncStatus = syncStatus
+    this.syncAction = syncAction
+    this.done=done
   }
 
   static fromDto(dto: TodoItemDTO){
@@ -65,4 +65,4 @@ class TodoItemObj {
   }
 }
 
-export default TodoItemObj;
+export default TodoItemObj

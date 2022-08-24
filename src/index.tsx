@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {BrowserRouter} from "react-router-dom";
-import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {BrowserRouter} from "react-router-dom"
+import './index.css'
+import App from './App'
 // @ts-ignore
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals'
+import { Provider } from 'react-redux'
 import store from './store/store'
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
 
 //initialize firebase
 const firebaseApp = initializeApp({
@@ -22,9 +22,9 @@ const firebaseApp = initializeApp({
   measurementId: process.env.REACT_APP_measurementId
 })
 
-export const firebaseDb = getFirestore(firebaseApp);
+export const firebaseDb = getFirestore(firebaseApp)
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
     <Provider store={store}>
       <BrowserRouter>
@@ -33,9 +33,9 @@ root.render(
         </React.StrictMode>
       </BrowserRouter>
     </Provider>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

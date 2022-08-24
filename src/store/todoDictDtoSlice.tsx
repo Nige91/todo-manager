@@ -1,11 +1,11 @@
-import {AnyAction, createSlice, PayloadAction, ThunkAction} from "@reduxjs/toolkit";
-import {collection, doc, getDocs, query, setDoc, deleteDoc} from "firebase/firestore";
+import {AnyAction, createSlice, PayloadAction, ThunkAction} from "@reduxjs/toolkit"
+import {collection, doc, getDocs, query, setDoc, deleteDoc} from "firebase/firestore"
 
 
-import {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
-import {RootState} from "./store";
-import {firebaseDb} from "../index";
-import {FirebaseUtils} from "../utils/FirebaseUtils";
+import {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj"
+import {RootState} from "./store"
+import {firebaseDb} from "../index"
+import {FirebaseUtils} from "../utils/FirebaseUtils"
 
 export type TodoSliceState = {[key: string]: TodoItemDTO}
 const todoItemsCollectionName = "todoItems"
@@ -15,40 +15,40 @@ export const todoDictDtoSlice = createSlice({
   initialState: {} as TodoSliceState,
   reducers: {
     addOrUpdate: (state, action: PayloadAction<TodoItemDTO>) => {
-      let todoItemDto = action.payload;
-      todoItemDto.syncStatus = SyncStatus.PENDING;
-      state[todoItemDto.id] = todoItemDto;
+      let todoItemDto = action.payload
+      todoItemDto.syncStatus = SyncStatus.PENDING
+      state[todoItemDto.id] = todoItemDto
     },
     addList: (state, action: PayloadAction<TodoItemDTO[]>) => {
       action.payload.forEach(item => state[item.id] = item)
     },
     setSyncStatus: (state, action: PayloadAction<{id: string, newStatus: SyncStatus}>) => {
-      let todoItemDto = state[action.payload.id];
-      todoItemDto.syncStatus = action.payload.newStatus;
-      state[action.payload.id] = todoItemDto;
+      let todoItemDto = state[action.payload.id]
+      todoItemDto.syncStatus = action.payload.newStatus
+      state[action.payload.id] = todoItemDto
     },
     remove: (state, action: PayloadAction<TodoItemDTO>) => {
-      let todoItemDto = action.payload;
-      delete state[todoItemDto.id];
+      let todoItemDto = action.payload
+      delete state[todoItemDto.id]
     },
     requestRemove: (state, action: PayloadAction<TodoItemDTO>) => {
       let todoItemDto = action.payload
-      todoItemDto.syncStatus = SyncStatus.PENDING;
-      todoItemDto.syncAction = SyncAction.DELETE;
-      state[todoItemDto.id] = todoItemDto;
+      todoItemDto.syncStatus = SyncStatus.PENDING
+      todoItemDto.syncAction = SyncAction.DELETE
+      state[todoItemDto.id] = todoItemDto
     }
   }
-});
+})
 
 export const fetchTodo = (): ThunkAction<void, RootState, unknown, AnyAction> => {
   return async (dispatch) => {
-    const q = query(collection(firebaseDb, todoItemsCollectionName));
+    const q = query(collection(firebaseDb, todoItemsCollectionName))
 
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q)
     // @ts-ignore
-    const todoDTOList = querySnapshot.docs.map(doc => FirebaseUtils.convertFirebaseToTodoItemDTO(doc.data()));
+    const todoDTOList = querySnapshot.docs.map(doc => FirebaseUtils.convertFirebaseToTodoItemDTO(doc.data()))
     dispatch(todoDictDtoSlice.actions.addList(todoDTOList))
-    console.log("successfully fetched todoList: "+todoDTOList);
+    console.log("successfully fetched todoList: "+todoDTOList)
   }
 }
 
@@ -56,7 +56,7 @@ export const syncTodo = (item: TodoItemDTO): ThunkAction<void, RootState, unknow
   return async (dispatch) => {
     dispatch(todoDictDtoSlice.actions.setSyncStatus({id: item.id, newStatus: SyncStatus.SYNCING}))
     if (item.syncAction === SyncAction.ADD_OR_UPDATE) {
-      let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item);
+      let itemFirebaseDTO = FirebaseUtils.convertTodoItemDTOForFirebase(item)
       console.log("start sync for item " + item.id)
       setDoc(doc(firebaseDb, todoItemsCollectionName, item.id), itemFirebaseDTO)
           .then(() => {

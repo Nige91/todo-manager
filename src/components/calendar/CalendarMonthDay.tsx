@@ -1,14 +1,14 @@
 
 
-import React, {useState} from "react";
+import React, {useState} from "react"
 
-import TodoForm from "../todo/TodoForm";
-import TodoItemDetail from "../todo/TodoItemDetail";
-import TodoList from "../todo/TodoList";
-import TodoItemObj from "../../model/TodoItemObj";
-import {TodoMap} from "../../hooks/useTodoMap";
-import Modal from "../ui/Modal";
-import CalendarUtils from "../../utils/CalendarUtils";
+import TodoForm from "../todo/TodoForm"
+import TodoItemDetail from "../todo/TodoItemDetail"
+import TodoList from "../todo/TodoList"
+import TodoItemObj from "../../model/TodoItemObj"
+import {TodoMap} from "../../hooks/useTodoMap"
+import Modal from "../ui/Modal"
+import CalendarUtils from "../../utils/CalendarUtils"
 
 type Props = {
   date: Date,
@@ -20,8 +20,8 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
   const [formModalActive, setFormModalActive] = useState(false)
   const [detailModalActive, setDetailModalActive] = useState(false)
   const [id, setId] = useState("")
-  const dateString = CalendarUtils.formatDate(props.date);
-  const todoMap = props.todoMap;
+  const dateString = CalendarUtils.formatDate(props.date)
+  const todoMap = props.todoMap
   let todoList: TodoItemObj[] = []
   if (todoMap[dateString] !== undefined) {
     todoList = Object.values(todoMap[dateString])
@@ -30,16 +30,16 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
 
 
   const formButtonCLickHandler = () => {
-    setFormModalActive(true);
+    setFormModalActive(true)
   }
 
   const formModalOutsideClickHandler = () => {
-    setFormModalActive(false);
+    setFormModalActive(false)
   }
 
   const todoClickHandler = (id: string) => {
-    setDetailModalActive(true);
-    setId(id);
+    setDetailModalActive(true)
+    setId(id)
   }
 
   const detailModalOutsideClickHandler = () => {
@@ -48,7 +48,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
   }
 
   const detailDateChangeHandler = () => {
-    setDetailModalActive(false);
+    setDetailModalActive(false)
     setId("")
   }
 
@@ -73,4 +73,4 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
   </div>
 }
 
-export default CalendarMonthDay;
+export default CalendarMonthDay

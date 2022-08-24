@@ -1,5 +1,5 @@
-import React from "react";
-import Calendar from "../components/calendar/Calendar";
+import React from "react"
+import Calendar from "../components/calendar/Calendar"
 
 function CalendarView(){
   return <div className="m-2 p-2">
@@ -8,4 +8,4 @@ function CalendarView(){
   </div>
 }
 
-export default CalendarView;
+export default CalendarView

@@ -1,5 +1,5 @@
-import React from "react";
-import TodoItemObj, {SyncAction, SyncStatus} from "../../model/TodoItemObj";
+import React from "react"
+import TodoItemObj, {SyncAction, SyncStatus} from "../../model/TodoItemObj"
 
 type Props = {
   onClick: (id: string) => void
@@ -16,4 +16,4 @@ const TodoItemSmall: React.FC<Props> = (props) => {
   </p>
 }
 
-export default TodoItemSmall;
+export default TodoItemSmall

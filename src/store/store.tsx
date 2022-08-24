@@ -9,25 +9,25 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 
-export default store;
+export default store
 
 
 
 
-// import { createStore } from 'react-redux';
-// import TodoItemObj from "../model/TodoItemObj";
+// import { createStore } from 'react-redux'
+// import TodoItemObj from "../model/TodoItemObj"
 //
 // const todoListReducer = (state = { todoList: [] }, action) => {
 //   if (action.type === 'add') {
-//     let counter = state.todoList.length;
+//     let counter = state.todoList.length
 //     return {
 //       todoList: state.todoList.append(new TodoItemObj("title"+counter, "resp"+counter, "descr"+counter))
-//     };
+//     }
 //   }
 //
-//   return state;
-// };
+//   return state
+// }
 //
-// const store = createStore(todoListReducer);
+// const store = createStore(todoListReducer)
 //
-// export default store;
+// export default store
