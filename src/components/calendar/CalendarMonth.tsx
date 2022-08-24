@@ -23,9 +23,9 @@ const CalendarMonth: React.FC = () => {
            value={selectedDate === null ? undefined : CalendarUtils.formatDateForMonthInput(selectedDate)}
            onChange={monthChangeHandler}/>
     {monthWeekList.map((week)=>{
-      return <div className="flex flex-row">
+      return <div className="flex flex-row" key={week[0].getDate()}>
         {week.map((date)=>{
-          return <CalendarMonthDay date={date} todoMap={todoMap}/>
+          return <CalendarMonthDay date={date} todoMap={todoMap} key={date.getTime()}/>
         })}
       </div>
     })}

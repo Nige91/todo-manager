@@ -9,7 +9,7 @@ type Props = {
 
 const TodoList: React.FC<Props> = (props) => {
   return <div>
-    {props.todoList.map((item)=><TodoItemSmall item={item} onClick={props.onItemClick}/>)}
+    {props.todoList.map((item)=><TodoItemSmall item={item} onClick={props.onItemClick} key={item.id}/>)}
   </div>
 }
 
