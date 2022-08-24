@@ -25,7 +25,6 @@ function App() {
 
   return (
       <div className="flex flex-row">
-        <Sidebar />
         <RouterView/>
       </div>
   );
