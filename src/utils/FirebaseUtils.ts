@@ -1,4 +1,4 @@
-import TodoItemObj, {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
+import {SyncAction, SyncStatus, TodoItemDTO} from "../model/TodoItemObj";
 
 export class FirebaseUtils{
   static convertTodoItemDTOForFirebase(item: TodoItemDTO):Omit<TodoItemDTO, 'syncStatus' | 'syncAction'>{

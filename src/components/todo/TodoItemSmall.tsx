@@ -12,7 +12,7 @@ const TodoItemSmall: React.FC<Props> = (props) => {
 
   return <p onClick={() => props.onClick(props.item.id)} className={`p-2 mb-2 ${color} ${opacity} rounded`} >
     {props.item.title} {props.item.syncStatus===SyncStatus.SYNCING &&
-      <img src={process.env.PUBLIC_URL + '/loading.gif'} className="w-2 h-2"/>}
+      <img src={process.env.PUBLIC_URL + '/loading.gif'} className="w-2 h-2" alt="sync in progress"/>}
   </p>
 }
 
