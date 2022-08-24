@@ -44,6 +44,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
 
   const detailModalOutsideClickHandler = () => {
     setDetailModalActive(false)
+    setId("")
   }
 
   const detailDateChangeHandler = () => {
