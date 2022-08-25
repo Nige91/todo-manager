@@ -7,8 +7,11 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store/store'
-import { initializeApp } from 'firebase/app'
+import {initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
+import {getAuth} from 'firebase/auth'
+import firebase from "firebase/compat/app";
+import * as firebaseui from "firebaseui";
 
 //initialize firebase
 const firebaseApp = initializeApp({
@@ -23,6 +26,33 @@ const firebaseApp = initializeApp({
 })
 
 export const firebaseDb = getFirestore(firebaseApp)
+export const firebaseAuth = getAuth(firebaseApp)
+
+//setup FirebaseUI Auth
+let ui = new firebaseui.auth.AuthUI(firebaseAuth);
+const uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult(authResult: any, redirectUrl?: string): boolean {
+      console.log(authResult)
+      return false;
+    }
+  },
+  signInOptions: [
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: false
+    }
+  ]
+}
+firebaseAuth.onAuthStateChanged((user)=>{
+  if(user){
+    document.getElementById('root')!.style.display = 'block';
+  }
+  else{
+    document.getElementById('root')!.style.display = 'none';
+    ui.start('#firebaseui-auth-container', uiConfig);
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
