@@ -17,7 +17,11 @@ const Toolbar: React.FC = () => {
     await firebaseAuth.signOut()
   }
 
-  firebaseAuth.onAuthStateChanged(user => setUser(user))
+  firebaseAuth.onIdTokenChanged(newUser => {
+    if(newUser !== null && (user === null || user.uid !== newUser.uid)){
+      setUser(newUser)
+    }
+  })
 
   return <div className="m-2 p-2 mb-0 pb-0 flex flex-row">
     <Link to={route}
@@ -26,7 +30,7 @@ const Toolbar: React.FC = () => {
       {linkText}
     </Link>
     <button onClick={signOut}>Sign Out</button>
-    <img src={user?.photoURL || ""}/>
+    <img referrerPolicy="no-referrer" src={user?.photoURL || ""}/>
   </div>
 }
 
