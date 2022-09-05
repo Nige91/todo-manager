@@ -10,8 +10,13 @@ type Props = {
 const CollapsableTodoList: React.FC<Props> = (props) => {
   const [showList, setShowList] = useState(false);
 
+  const nItems = props.todoList.length
+  const nItemsDone = props.todoList.filter(item=>item.done).length
+
   return <React.Fragment>
-    <div className="p-2 mb-2 bg-blue-200 rounded" onClick={()=>setShowList(prev=>!prev)}>Items</div>
+    <div className="p-2 mb-2 bg-blue-200 rounded" onClick={()=>setShowList(prev=>!prev)}>
+      Items {"("+nItemsDone+"/"+nItems+")"}
+    </div>
     {showList && <TodoList todoList={props.todoList} onItemClick={props.onItemClick}/>}
   </React.Fragment>
 }
