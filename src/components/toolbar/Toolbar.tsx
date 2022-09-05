@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import {Link} from "react-router-dom"
 import {firebaseAuth} from "../../index";
+import Dropdown from "../ui/Dropdown";
 
 const Toolbar: React.FC = () => {
   const [calViewSelected, setCalViewSelected] = useState(false)
@@ -23,14 +24,25 @@ const Toolbar: React.FC = () => {
     }
   })
 
+  const dropdownJsx = <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li onClick={signOut}><a>Sign Out</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+
   return <div className="m-2 p-2 mb-0 pb-0 flex flex-row">
     <Link to={route}
           onClick={switchView}
           className="m-2 p-2 mb-0 shadow rounded bg-blue-200">
       {linkText}
     </Link>
-    <button onClick={signOut}>Sign Out</button>
-    <img referrerPolicy="no-referrer" src={user?.photoURL || ""}/>
+
+    <Dropdown dropdownHeight={16} dropdownNode={dropdownJsx}>
+      <div className="avatar">
+        <div className="w-12 rounded-full">
+          <img referrerPolicy="no-referrer" src={user?.photoURL || ""}/>
+        </div>
+      </div>
+    </Dropdown>
   </div>
 }
 
