@@ -26,7 +26,7 @@ const CalendarMonth: React.FC = () => {
     {monthWeekList.map((week)=>{
       return <div className="flex flex-row" key={week[0].getDate()}>
         {week.map((date)=>{
-          return <CalendarMonthDay date={date} todoMap={todoMap} key={date.getTime()}/>
+          return <CalendarMonthDay date={date} todoMap={todoMap} key={date.getTime()} isToday={CalendarUtils.isToday(date)}/>
         })}
       </div>
     })}

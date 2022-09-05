@@ -12,7 +12,8 @@ import CalendarUtils from "../../utils/CalendarUtils"
 
 type Props = {
   date: Date,
-  todoMap: TodoMap
+  todoMap: TodoMap,
+  isToday: boolean
 }
 
 const CalendarMonthDay: React.FC<Props> = (props) => {
@@ -52,7 +53,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
     setId("")
   }
 
-  return <div className="p-2 m-2 shadow rounded bg-blue-200">
+  return <div className={`p-2 m-2 shadow rounded bg-blue-200 ${props.isToday ? 'border-2 border-black' : ''}`}>
     <p className="mb-2">{dayArr[(props.date.getDay() + 6) % 7]}</p>
     <p className="mb-2">{CalendarUtils.formatDate(props.date)}</p>
     <TodoList

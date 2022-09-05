@@ -77,6 +77,11 @@ class CalendarUtils{
     }
     return true
   }
+
+  static isToday(date: Date){
+    let today = new Date();
+    return this.compareDate(date, today)
+  }
 }
 
 export default CalendarUtils
