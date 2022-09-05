@@ -5,6 +5,7 @@ import TodoForm from "../components/todo/TodoForm"
 import TodoItemObj from "../model/TodoItemObj"
 import useTodoMap from "../hooks/useTodoMap"
 import TodoItemDetail from "../components/todo/TodoItemDetail"
+import CollapsableTodoList from "../components/todo/CollapsableTodoList";
 
 function TodoListView(){
   const [formModalActive, setFormModalActive] = useState(false)
@@ -42,7 +43,7 @@ function TodoListView(){
 
   return <div className="m-2 p-2 max-w-md">
     <h1>Todo List</h1>
-    <TodoList
+    <CollapsableTodoList
         onItemClick={detailModalClickHandler}
         todoList={todoList}/>
     <button onClick={formClickHandler}>Add</button>
