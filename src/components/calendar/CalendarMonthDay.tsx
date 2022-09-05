@@ -9,6 +9,7 @@ import TodoItemObj from "../../model/TodoItemObj"
 import {TodoMap} from "../../hooks/useTodoMap"
 import Modal from "../ui/Modal"
 import CalendarUtils from "../../utils/CalendarUtils"
+import CollapsableTodoList from "../todo/CollapsableTodoList";
 
 type Props = {
   date: Date,
@@ -56,7 +57,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
   return <div className={`p-2 m-2 shadow rounded bg-blue-200 ${props.isToday ? 'border-2 border-black' : ''}`}>
     <p className="mb-2">{dayArr[(props.date.getDay() + 6) % 7]}</p>
     <p className="mb-2">{CalendarUtils.formatDate(props.date)}</p>
-    <TodoList
+    <CollapsableTodoList
         todoList={todoList}
         onItemClick={todoClickHandler}
     />
