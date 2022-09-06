@@ -1,4 +1,4 @@
-import {useRef} from "react"
+import {useEffect, useRef, useState} from "react"
 import { useDispatch } from 'react-redux'
 import {addOrUpdate} from "../../store/todoDictDtoSlice"
 import TodoItemObj from "../../model/TodoItemObj"
@@ -6,6 +6,7 @@ import React from "react"
 
 type Props = {
   date?: Date,
+  active: boolean,
   afterSubmit: () => void
 }
 
@@ -15,6 +16,17 @@ const TodoForm: React.FC<Props> = (props) => {
   const titleInput = useRef<HTMLInputElement>(null)
   const descrInput = useRef<HTMLInputElement>(null)
 
+  const [activeAlreadyChanged, setActiveAlreadyChanged] = useState(false)
+
+  useEffect(()=>{
+    if(props.active && !activeAlreadyChanged){
+      setActiveAlreadyChanged(true);
+      titleInput.current!.focus()
+    }
+    else if(!props.active && activeAlreadyChanged){
+      setActiveAlreadyChanged(false);
+    }
+  }, [props.active, activeAlreadyChanged])
 
   const onClickHandler = () => {
     const id = Math.floor(Math.random()*100000000).toString() //TODO implement correct id
@@ -31,15 +43,21 @@ const TodoForm: React.FC<Props> = (props) => {
     props.afterSubmit()
   }
 
+  const enterKeyHandler: React.KeyboardEventHandler = (evt) => {
+    if(evt.key === 'Enter'){
+      onClickHandler();
+    }
+  }
+
   return <div className="flex-col p-2">
     <form>
       <div className="m-2 p-2  rounded">
         <label htmlFor="title">title: </label>
-        <input type="text" ref={titleInput} name="title" id="title"/>
+        <input onKeyUp={enterKeyHandler} tabIndex={0} type="text" ref={titleInput} name="title" id="title"/>
       </div>
       <div className="m-2 p-2 rounded">
         <label htmlFor="description">description: </label>
-        <input type="text" ref={descrInput} name="description" id="description"/>
+        <input onKeyUp={enterKeyHandler} type="text" ref={descrInput} name="description" id="description"/>
       </div>
     </form>
     <button className="p-2 rounded shadow bg-blue-200" onClick={onClickHandler}>Submit</button>

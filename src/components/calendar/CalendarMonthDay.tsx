@@ -58,7 +58,7 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
     <button className="p-2 rounded bg-blue-500" onClick={formButtonCLickHandler}>+</button>
     <Modal onClickOutside={formModalOutsideClickHandler} active={formModalActive} modalDivId="formModal"
            backdropDivId="formBackdrop">
-      <TodoForm date={props.date} afterSubmit={formModalOutsideClickHandler}/>
+      <TodoForm date={props.date} active={formModalActive} afterSubmit={formModalOutsideClickHandler}/>
     </Modal>
     <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal"
            backdropDivId="todoBackdrop">

@@ -49,7 +49,7 @@ function TodoListView(){
     <button onClick={formClickHandler}>Add</button>
     <Modal active={formModalActive} onClickOutside={formOutsideClickHandler} modalDivId="formModal"
            backdropDivId="formBackdrop">
-      <TodoForm afterSubmit={formOutsideClickHandler}/>
+      <TodoForm active={formModalActive} afterSubmit={formOutsideClickHandler}/>
     </Modal>
     <Modal onClickOutside={detailModalOutsideClickHandler} active={detailModalActive} modalDivId="todoModal"
            backdropDivId="todoBackdrop">
