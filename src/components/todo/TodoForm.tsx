@@ -49,18 +49,18 @@ const TodoForm: React.FC<Props> = (props) => {
     }
   }
 
-  return <div className="flex-col p-2">
+  return <div className="flex-col pt-1  rounded bg-white">
     <form>
       <div className="m-2 p-2  rounded">
-        <label htmlFor="title">title: </label>
-        <input onKeyUp={enterKeyHandler} tabIndex={0} type="text" ref={titleInput} name="title" id="title"/>
+        <label htmlFor="title">title:</label>
+        <input className="ml-2 border-black border-2 rounded-md" onKeyUp={enterKeyHandler} tabIndex={0} type="text" ref={titleInput} name="title" id="title"/>
       </div>
       <div className="m-2 p-2 rounded">
         <label htmlFor="description">description: </label>
-        <input onKeyUp={enterKeyHandler} type="text" ref={descrInput} name="description" id="description"/>
+        <input className="ml-2 border-black border-2 rounded-md" onKeyUp={enterKeyHandler} type="text" ref={descrInput} name="description" id="description"/>
       </div>
     </form>
-    <button className="p-2 rounded shadow bg-blue-200" onClick={onClickHandler}>Submit</button>
+    <button className="p-2 ml-4 mb-4 rounded shadow bg-clr-light" onClick={onClickHandler}>Submit</button>
   </div>
 }
 

@@ -4,6 +4,10 @@ fix accoount button
 
 implement weekview ?
 
+add pretty icons
+
+use textarea for descr. input
+
 fix switch view button when coming from /calendar link
 
 use authentication when fetching and storing items.

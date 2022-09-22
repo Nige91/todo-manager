@@ -64,26 +64,26 @@ const TodoItemDetail: React.FC<Props> = (props) => {
   const color400 = item.done ? "bg-green-400" : "bg-blue-400"
 
 
-  const titleInputJSX = <input type="text" ref={titleInput} name="title" id="title" value={titleInputValue}
+  const titleInputJSX = <input type="text" className="border-black border-2 rounded-md p-1" ref={titleInput} name="title" id="title" value={titleInputValue}
                                onChange={(evt) => setTitleInputValue(evt.target.value)}/>
-  const descrInputJSX = <input type="text" ref={descrInput} name="descr" id="descr" value={descrInputValue}
+  const descrInputJSX = <input type="text" className="border-black border-2 rounded-md p-1" ref={descrInput} name="descr" id="descr" value={descrInputValue}
                                onChange={(evt) => setDescrInputValue(evt.target.value)}/>
-  const dateInputJSX = <input type="date" ref={dateInput} name="date" id="date" value={dateInputValue === null ? undefined : dateInputValue}
+  const dateInputJSX = <input type="date" className="border-black mt-2 ml-2 border-2 rounded-md p-1" ref={dateInput} name="date" id="date" value={dateInputValue === null ? undefined : dateInputValue}
                               onChange={(evt) => setDateInputValue(evt.target.value)}/>
 
-  return <div className={`flex flex-col rounded shadow m-2 ${color400}`}>
+  return <div className={`flex flex-col bg-white rounded shadow space-y-2`}>
     {editMode && dateInputJSX}
     <div className="flex flex-row">
-      <div className={`m-2 p-2 mr-0 mb-0 flex-grow rounded ${color200}`}>{editMode ? titleInputJSX : item.title}</div>
-      <div className={`m-2 p-2 mr-0 mb-0 flex-grow rounded ${color200}`}>{item.syncStatus}</div>
-      <button className={`m-2 p-2 mb-0 rounded shadow ${color200}`} onClick={toggleEdit}>
+      <div className={`p-2 mr-0 mb-0 flex-grow rounded`}>{editMode ? titleInputJSX : item.title}</div>
+      <div className={`p-2 mr-0 mb-0 flex-grow rounded`}>{item.syncStatus}</div>
+      <button className={`mb-0 rounded shadow bg-clr-light`} onClick={toggleEdit}>
         {editMode ? 'Save' : 'Edit'}
       </button>
     </div>
-    <div className={`m-2 p-2 rounded ${color200}`}>{editMode ? descrInputJSX : item.description}</div>
+    <div className={`pl-2 rounded`}>{editMode ? descrInputJSX : item.description}</div>
     <div className="flex flex-row">
-      <button className={`m-2 p-2 rounded shadow ${color200}`} onClick={delItem}>Del</button>
-      <button className={`m-2 p-2 rounded shadow ${color200}`} onClick={toggleItemDone}>{item.done ? "Unset Done" : "Set Done"}</button>
+      <button className={`p-2 rounded shadow bg-clr-light`} onClick={delItem}>Del</button>
+      <button className={`p-2 rounded shadow bg-clr-light`} onClick={toggleItemDone}>{item.done ? "Unset Done" : "Set Done"}</button>
     </div>
   </div>
 }

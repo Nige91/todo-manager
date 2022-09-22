@@ -41,12 +41,16 @@ function TodoListView(){
     setId("")
   }
 
-  return <div className="m-2 p-2 max-w-md">
-    <h1>Todo List</h1>
+  return <div className="p-4 max-w-md space-y-2">
+    <h1 className="text-xl">
+      Todo List
+    </h1>
     <CollapsableTodoList
         onItemClick={detailModalClickHandler}
         todoList={todoList}/>
-    <button onClick={formClickHandler}>Add</button>
+    <button onClick={formClickHandler} className="p-2 rounded bg-clr-dark">
+      +
+    </button>
     <Modal active={formModalActive} onClickOutside={formOutsideClickHandler} modalDivId="formModal"
            backdropDivId="formBackdrop">
       <TodoForm active={formModalActive} afterSubmit={formOutsideClickHandler}/>

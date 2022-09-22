@@ -8,7 +8,7 @@ const Backdrop:React.FC<{onClick: ()=>void }> = (props) =>{
 }
 
 const ModalContent:React.FC<{children: React.ReactNode}> = (props) => {
-  return <div className={`p-2 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white z-50 modal-anim-content origin-center`}>
+  return <div className={`fixed bg-opacity-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white z-50 modal-anim-content origin-center`}>
     {props.children}
   </div>
 }
