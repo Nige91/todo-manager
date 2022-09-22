@@ -1,25 +1,18 @@
 adapt structure to store todos, stop fetching all todos
 
-extract input component ?
+fix accoount button
 
 implement weekview ?
 
-add toolbar
-remove sidebar
-add switch button between calendar and list view
+fix switch view button when coming from /calendar link
 
-add authentication
-
-implement collapse in both views
-implement counter (done/total) in both views
+use authentication when fetching and storing items.
 
 data validation, error handling
 
 add explanation on how to use the app
 
 add settings to disable explanation
-
-highlight current day in calendar
 
 make responsive
 finalize jsx and css
@@ -35,5 +28,7 @@ add priorities
 add edit mode outside of detail view, that adds delete and setdone button at the sides of each todoitem, for quicker editing of multiple items.
 
 add more languages
+
+implement weekview ?
 
 
