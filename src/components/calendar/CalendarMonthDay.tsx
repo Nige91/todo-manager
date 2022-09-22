@@ -51,11 +51,11 @@ const CalendarMonthDay: React.FC<Props> = (props) => {
     setId("")
   }
 
-  return <div className={`p-2 m-2 shadow rounded bg-blue-200 ${props.isToday ? 'border-2 border-black' : ''}`}>
+  return <div className={`p-2 shadow rounded bg-white ${props.isToday ? 'border-2 border-black' : ''}`}>
     <p className="mb-2">{dayArr[(props.date.getDay() + 6) % 7]}</p>
     <p className="mb-2">{CalendarUtils.formatDate(props.date)}</p>
     {todoList.length > 0 && <CollapsableTodoList todoList={todoList} onItemClick={todoClickHandler}/>}
-    <button className="p-2 rounded bg-blue-500" onClick={formButtonCLickHandler}>+</button>
+    <button className="p-2 rounded bg-clr-dark" onClick={formButtonCLickHandler}>+</button>
     <Modal onClickOutside={formModalOutsideClickHandler} active={formModalActive} modalDivId="formModal"
            backdropDivId="formBackdrop">
       <TodoForm date={props.date} active={formModalActive} afterSubmit={formModalOutsideClickHandler}/>

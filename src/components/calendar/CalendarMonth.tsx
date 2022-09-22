@@ -18,13 +18,13 @@ const CalendarMonth: React.FC = () => {
     setSelectedDate(new Date(evt.target.value + '-01'))
   }
 
-  return <div className="flex flex-col">
+  return <div className="flex flex-col space-y-2">
     <input type="month"
-           className="max-w-md"
+           className="max-w-md ml-4"
            value={selectedDate === null ? undefined : CalendarUtils.formatDateForMonthInput(selectedDate)}
            onChange={monthChangeHandler}/>
     {monthWeekList.map((week)=>{
-      return <div className="flex flex-row" key={week[0].getDate()}>
+      return <div className="flex flex-row space-x-2 ml-4" key={week[0].getDate()}>
         {week.map((date)=>{
           return <CalendarMonthDay date={date} todoMap={todoMap} key={date.getTime()} isToday={CalendarUtils.isToday(date)}/>
         })}

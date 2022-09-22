@@ -1,17 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"
   ],
   theme: {
-    colors: {
-      'clr-dark': '#066B76',
-      'clr-light': '#6AACB3',
-      'clr-accent': '#F79A21',
-      'neutral-light': '#CCCCCC',
-      'neutral-dark': '#454545',
+    extend: {
+      colors: {
+        'clr-dark': '#066B76',
+        'clr-light': '#6AACB3',
+        'clr-accent': '#F79A21',
+        'clr-bgr': '#F7F7F7',
+        'neutral-light': '#DDDDDD',
+        'neutral-dark': '#454545',
+      },
     },
-    extend: {},
   },
   plugins: [require("daisyui")],
 }
