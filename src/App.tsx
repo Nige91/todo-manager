@@ -9,13 +9,17 @@ import {SyncStatus, TodoItemDTO} from "./model/TodoItemObj"
 import {fetchTodo, syncTodo} from "./store/todoDictDtoSlice"
 import {ThunkDispatch} from "@reduxjs/toolkit"
 import Toolbar from "./components/toolbar/Toolbar"
+import {firebaseAuth} from "./index";
+import Spinner from "./components/ui/Spinner";
 
 function App() {
   const todoItemDTOList = useSelector<RootState, TodoItemDTO[]>(state => Object.values(state.todoDictDto))
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   useEffect(()=>{
-    dispatch(fetchTodo())
+    if (firebaseAuth.currentUser) {
+      dispatch(fetchTodo())
+    }
   }, [dispatch])
 
   useEffect(()=> {
