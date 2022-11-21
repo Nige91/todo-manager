@@ -46,6 +46,7 @@ const uiConfig = {
   ]
 }
 firebaseAuth.onAuthStateChanged((user)=>{
+  document.getElementById('app-loading-spinner')!.style.display = 'none';
   if(user){
     document.getElementById('root')!.style.display = 'block';
     document.getElementById('firebaseui-auth-container')!.style.display = 'none';
