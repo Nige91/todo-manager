@@ -48,9 +48,11 @@ const uiConfig = {
 firebaseAuth.onAuthStateChanged((user)=>{
   if(user){
     document.getElementById('root')!.style.display = 'block';
+    document.getElementById('firebaseui-auth-container')!.style.display = 'none';
   }
   else{
     document.getElementById('root')!.style.display = 'none';
+    document.getElementById('firebaseui-auth-container')!.style.display = 'block';
     ui.start('#firebaseui-auth-container', uiConfig);
   }
 })
