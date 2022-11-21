@@ -44,11 +44,16 @@ export const fetchTodo = (): ThunkAction<void, RootState, unknown, AnyAction> =>
   return async (dispatch) => {
     const q = query(collection(firebaseDb, todoItemsCollectionName))
 
-    const querySnapshot = await getDocs(q)
-    // @ts-ignore
-    const todoDTOList = querySnapshot.docs.map(doc => FirebaseUtils.convertFirebaseToTodoItemDTO(doc.data()))
-    dispatch(todoDictDtoSlice.actions.addList(todoDTOList))
-    console.log("successfully fetched todoList: "+todoDTOList)
+    getDocs(q)
+        .then((querySnapshot) => {
+          // @ts-ignore
+          const todoDTOList = querySnapshot.docs.map(doc => FirebaseUtils.convertFirebaseToTodoItemDTO(doc.data()))
+          dispatch(todoDictDtoSlice.actions.addList(todoDTOList))
+          console.log("successfully fetched todoList: "+todoDTOList)
+        })
+        .catch((err)=>{
+          console.error(err)
+        })
   }
 }
 
