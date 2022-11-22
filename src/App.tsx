@@ -17,9 +17,7 @@ function App() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   useEffect(()=>{
-    if (firebaseAuth.currentUser) {
-      dispatch(fetchTodo())
-    }
+    dispatch(fetchTodo())
   }, [dispatch])
 
   useEffect(()=> {

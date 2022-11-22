@@ -50,6 +50,7 @@ firebaseAuth.onAuthStateChanged((user)=>{
   if(user){
     document.getElementById('root')!.style.display = 'block';
     document.getElementById('firebaseui-auth-container')!.style.display = 'none';
+    renderApp();
   }
   else{
     document.getElementById('root')!.style.display = 'none';
@@ -58,16 +59,18 @@ firebaseAuth.onAuthStateChanged((user)=>{
   }
 })
 
-const root = ReactDOM.createRoot(document.getElementById('root')!)
-root.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <React.StrictMode>
-          <App/>
-        </React.StrictMode>
-      </BrowserRouter>
-    </Provider>
-)
+function renderApp(){
+  const root = ReactDOM.createRoot(document.getElementById('root')!)
+  root.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <React.StrictMode>
+            <App/>
+          </React.StrictMode>
+        </BrowserRouter>
+      </Provider>
+  )
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
