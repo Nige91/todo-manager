@@ -6,14 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'clr-dark': '#066B76',
-        'clr-light': '#6AACB3',
-        'clr-accent': '#F79A21',
-        'clr-bgr': '#F7F7F7',
-        'clr-done': '#00CC00',
-        'clr-ndone': '#4488FF',
-        'neutral-light': '#DDDDDD',
-        'neutral-dark': '#454545',
+        'clr-base': '#7596AC',
+        'clr-accent': '#EC9B80',
+        'clr-bgr': '#f1f5f7',
+        'clr-done': '#7AB99B',
+        'neutral-light': '#f1f5f7',
+        'neutral-dark': '#161e24',
       },
     },
   },

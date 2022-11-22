@@ -76,14 +76,14 @@ const TodoItemDetail: React.FC<Props> = (props) => {
     <div className="flex flex-row">
       <div className={`p-2 mr-0 mb-0 flex-grow rounded`}>{editMode ? titleInputJSX : item.title}</div>
       <div className={`p-2 mr-0 mb-0 flex-grow rounded`}>{item.syncStatus}</div>
-      <button className={`mb-0 rounded shadow bg-clr-light`} onClick={toggleEdit}>
+      <button className={`mb-0 rounded shadow bg-clr-base`} onClick={toggleEdit}>
         {editMode ? 'Save' : 'Edit'}
       </button>
     </div>
     <div className={`pl-2 rounded`}>{editMode ? descrInputJSX : item.description}</div>
     <div className="flex flex-row">
-      <button className={`p-2 rounded shadow bg-clr-light`} onClick={delItem}>Del</button>
-      <button className={`p-2 rounded shadow bg-clr-light`} onClick={toggleItemDone}>{item.done ? "Unset Done" : "Set Done"}</button>
+      <button className={`p-2 rounded shadow bg-clr-base`} onClick={delItem}>Del</button>
+      <button className={`p-2 rounded shadow bg-clr-base`} onClick={toggleItemDone}>{item.done ? "Unset Done" : "Set Done"}</button>
     </div>
   </div>
 }

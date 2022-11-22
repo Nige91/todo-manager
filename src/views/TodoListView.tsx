@@ -48,7 +48,7 @@ function TodoListView(){
     <CollapsableTodoList
         onItemClick={detailModalClickHandler}
         todoList={todoList}/>
-    <button onClick={formClickHandler} className="p-2 rounded bg-clr-dark">
+    <button onClick={formClickHandler} className="p-2 rounded bg-clr-accent">
       +
     </button>
     <Modal active={formModalActive} onClickOutside={formOutsideClickHandler} modalDivId="formModal"

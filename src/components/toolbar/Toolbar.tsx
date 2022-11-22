@@ -29,10 +29,10 @@ const Toolbar: React.FC = () => {
     <li><a>Item 2</a></li>
   </ul>
 
-  return <div className="p-2 mb-0  flex flex-row justify-end items-center space-x-2 shadow bg-clr-light">
+  return <div className="p-2 mb-0  flex flex-row justify-end items-center space-x-2 shadow bg-clr-base">
     <Link to={route}
           onClick={switchView}
-          className="p-2 shadow-lg rounded bg-clr-accent">
+          className="p-2 shadow-lg rounded bg-clr-accent text-neutral-dark">
       {linkText}
     </Link>
 

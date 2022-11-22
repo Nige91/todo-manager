@@ -8,10 +8,10 @@ type Props = {
 }
 
 const TodoItemSmall: React.FC<Props> = (props) => {
-  const color = props.item.done ? "bg-clr-done" : "bg-clr-ndone"
+  const color = props.item.done ? "bg-clr-done" : "bg-clr-base"
   const opacity = props.item.syncAction === SyncAction.DELETE  ? "opacity-40" : ""
 
-  return <p onClick={() => props.onClick(props.item.id)} className={`p-2 mb-2 ${color} ${opacity} rounded flex`} >
+  return <p onClick={() => props.onClick(props.item.id)} className={`p-2 mb-2 ${color} ${opacity} rounded flex text-neutral-dark`} >
     {props.item.title}
     <Spinner visible={props.item.syncStatus===SyncStatus.SYNCING} size={2} styles="relative ml-auto mr-1"/>
   </p>

@@ -60,7 +60,7 @@ const TodoForm: React.FC<Props> = (props) => {
         <input className="ml-2 border-black border-2 rounded-md" onKeyUp={enterKeyHandler} type="text" ref={descrInput} name="description" id="description"/>
       </div>
     </form>
-    <button className="p-2 ml-4 mb-4 rounded shadow bg-clr-light" onClick={onClickHandler}>Submit</button>
+    <button className="p-2 ml-4 mb-4 rounded shadow bg-clr-base" onClick={onClickHandler}>Submit</button>
   </div>
 }
 
